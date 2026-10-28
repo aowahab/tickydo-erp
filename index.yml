@@ -1,0 +1,19 @@
+name: CriticAI
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  review:
+    name: CriticAI Code Review
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: euvin3582/CriticAI@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
