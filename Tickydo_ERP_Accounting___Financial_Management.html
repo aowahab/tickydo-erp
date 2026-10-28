@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickydo ERP — IFRS 18 & IAS 1 Financial & Accounting System</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Exact Tickydo Navy Palette */
+        .bg-tickydo-navy {
+            background-color: #094074;
+        }
+        .bg-tickydo-navy-dark {
+            background-color: #062c52;
+        }
+        .text-tickydo-navy {
+            color: #094074;
+        }
+        .border-tickydo-navy {
+            border-color: #094074;
+        }
+        /* Soft slate background for login right panel */
+        .login-right-bg {
+            background: radial-gradient(circle at 20% 20%, #eef6f6 0%, #f8fafc 55%, #edf4f8 100%);
+        }
+        /* Sidebar active tab */
+        .nav-active {
+            background-color: #094074;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(9, 64, 116, 0.3);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body, #erp-screen, main {
+                height: auto !important;
+                overflow: visible !important;
+                background: white !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen antialiased selection:bg-[#094074] selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- TOAST NOTIFICATION CONTAINER               -->
+    <!-- ========================================== -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none no-print"></div>
+
+    <!-- ========================================== -->
+    <!-- 1. SIGN IN SCREEN (FINANCIAL & AUDIT VIBE) -->
+    <!-- ========================================== -->
+    <div id="auth-screen" class="min-h-screen w-full flex flex-col lg:flex-row">
+        
+        <!-- Left Panel (50%): Deep Navy #094074 Branding & Financial Graphics -->
+        <div class="lg:w-1/2 bg-tickydo-navy text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between relative overflow-hidden">
+            <!-- Subtle decorative glow -->
+            <div class="pointer-events-none absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-sky-400/10 blur-3xl"></div>
+
+            <!-- Top-Left: Exact White Rounded Card with Tickydo™ SVG Logo -->
+            <div class="z-10">
+                <div class="inline-flex items-center bg-white rounded-xl px-4 py-2.5 shadow-md">
+                    <svg class="w-10 h-10 mr-3 shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 17.5L43 9L25.5 24.5L5 17.5Z" fill="#2b9eb3"/>
+                        <path d="M25.5 24.5L43 9L29.5 31L25.5 24.5Z" fill="#094074"/>
+                        <path d="M14 40L25.5 24.5L29.5 31L14 40Z" fill="#1565c0"/>
+                        <path d="M5 17.5L25.5 24.5L18 28.5L5 17.5Z" fill="#1e88e5" opacity="0.88"/>
+                    </svg>
+                    <div class="pr-1">
+                        <div class="flex items-start leading-none">
+                            <span class="text-[23px] font-extrabold tracking-tight text-[#094074]">Tickydo</span>
+                            <span class="text-[9px] font-bold text-slate-400 ml-0.5 -mt-0.5">TM</span>
+                        </div>
+                        <div class="text-[9.5px] font-semibold tracking-wider text-[#2b9eb3] mt-0.5">
+                            Tap | Ticket | Travel
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center-Left: Accounting & Audit Vibe Heading -->
+            <div class="my-12 lg:my-0 z-10 max-w-lg">
+                <h1 id="lang-hero-title" class="text-3xl sm:text-4xl lg:text-[40px] font-bold leading-[1.2] tracking-tight text-white">
+                    Precision in Audit.<br>Excellence in Accounting.<br>Every Financial Entry Tracked.
+                </h1>
+                <p id="lang-hero-sub" class="mt-4 text-sm sm:text-[15px] text-blue-100/90 leading-relaxed font-normal">
+                    IFRS 18 & IAS 1 compliant financial statements, unified general ledger dump, and rigorous corporate auditing in Bangladeshi Taka (BDT ৳).
+                </p>
+            </div>
+
+            <!-- Bottom-Left: Financial Indicator Badges -->
+            <div class="z-10 flex flex-wrap items-center gap-3 pt-4">
+                <div class="px-3.5 py-2 rounded-lg bg-white/10 border border-white/20 text-white font-bold text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-scale-balanced text-teal-300"></i> IAS 1 Balance Sheet
+                </div>
+                <div class="px-3.5 py-2 rounded-lg bg-[#eab308] text-slate-900 font-bold text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-file-invoice-dollar"></i> IFRS 18 P&L
+                </div>
+                <div class="px-3.5 py-2 rounded-lg bg-white/10 border border-white/20 text-white font-semibold text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-emerald-300"></i> Audit Ready
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel (50%): Login Card & Language Toggle -->
+        <div class="lg:w-1/2 login-right-bg flex flex-col justify-between p-6 sm:p-10 lg:p-12 relative">
+            
+            <!-- Top-Right: EN | বাংলা Language Toggle -->
+            <div class="flex justify-end">
+                <div class="inline-flex rounded-lg border border-slate-300 bg-white p-0.5 shadow-xs">
+                    <button type="button" onclick="setLanguage('en')" id="btn-lang-en" class="px-3.5 py-1 rounded-md text-xs font-bold bg-tickydo-navy text-white transition">
+                        EN
+                    </button>
+                    <button type="button" onclick="setLanguage('bn')" id="btn-lang-bn" class="px-3.5 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition">
+                        বাংলা
+                    </button>
+                </div>
+            </div>
+
+            <!-- Center: Login Card -->
+            <div class="my-auto mx-auto w-full max-w-[400px]">
+                <div class="bg-white/90 backdrop-blur-md rounded-2xl p-7 sm:p-9 shadow-xl border border-white">
+                    <h2 id="lang-signin-heading" class="text-2xl font-bold text-slate-800">Sign in</h2>
+                    <p id="lang-signin-sub" class="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                        Use the phone number your financial manager registered for you.
+                    </p>
+
+                    <!-- Error Box -->
+                    <div id="login-error" class="hidden mt-4 p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium flex items-center gap-2">
+                        <i class="fa-solid fa-circle-exclamation text-rose-600"></i>
+                        <span>Invalid phone number or password.</span>
+                    </div>
+
+                    <form id="login-form" onsubmit="handleLogin(event)" class="mt-6 space-y-4">
+                        <div>
+                            <label id="lang-phone-label" class="block text-xs font-semibold text-slate-600 mb-1.5">Phone number</label>
+                            <input 
+                                type="text" 
+                                id="login-phone" 
+                                placeholder="01XXXXXXXXX" 
+                                required
+                                autocomplete="username"
+                                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-slate-50/70 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#094074] focus:bg-white transition"
+                            >
+                        </div>
+
+                        <div>
+                            <label id="lang-pass-label" class="block text-xs font-semibold text-slate-600 mb-1.5">Password</label>
+                            <div class="relative">
+                                <input 
+                                    type="password" 
+                                    id="login-password" 
+                                    placeholder="••••••••" 
+                                    required
+                                    autocomplete="current-password"
+                                    class="w-full px-3.5 py-2.5 pr-10 rounded-lg border border-slate-300 bg-slate-50/70 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#094074] focus:bg-white transition"
+                                >
+                                <button 
+                                    type="button" 
+                                    onclick="togglePasswordVisibility('login-password', 'login-eye-icon')" 
+                                    class="absolute inset-y-0 right-0 px-3 flex items-center text-slate-400 hover:text-slate-600"
+                                >
+                                    <i id="login-eye-icon" class="fa-regular fa-eye text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="pt-1">
+                            <button 
+                                type="submit" 
+                                id="lang-signin-btn"
+                                class="w-full py-2.5 px-4 rounded-lg bg-tickydo-navy hover:bg-tickydo-navy-dark text-white font-semibold text-sm shadow-md hover:shadow-lg transition duration-150"
+                            >
+                                Sign in
+                            </button>
+                        </div>
+                    </form>
+
+                    <p id="lang-forgot-text" class="mt-5 text-[11px] text-center text-slate-400">
+                        Forgot your password? Ask your company admin to reset it.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bottom-Right: Powered Badge -->
+            <div class="flex justify-end items-center">
+                <span class="inline-flex items-center gap-1.5 bg-slate-900 text-white px-3.5 py-1.5 rounded-full text-[11px] font-medium shadow">
+                    <i class="fa-solid fa-bolt text-teal-400"></i> Powered by Tickydo ERP
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 2. MAIN ERP & ACCOUNTING DASHBOARD         -->
+    <!-- ========================================== -->
+    <div id="erp-screen" class="hidden h-screen w-full overflow-hidden flex flex-col md:flex-row bg-slate-50">
+        
+        <!-- Sidebar -->
+        <aside class="w-full md:w-64 bg-[#072f57] text-slate-200 flex flex-col justify-between shrink-0 border-r border-slate-800 no-print">
+            <div>
+                <!-- Brand Header -->
+                <div class="p-4 border-b border-white/10 flex items-center justify-between">
+                    <div class="inline-flex items-center bg-white rounded-xl px-3 py-1.5 shadow">
+                        <svg class="w-7 h-7 mr-2 shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 17.5L43 9L25.5 24.5L5 17.5Z" fill="#2b9eb3"/>
+                            <path d="M25.5 24.5L43 9L29.5 31L25.5 24.5Z" fill="#094074"/>
+                            <path d="M14 40L25.5 24.5L29.5 31L14 40Z" fill="#1565c0"/>
+                            <path d="M5 17.5L25.5 24.5L18 28.5L5 17.5Z" fill="#1e88e5" opacity="0.88"/>
+                        </svg>
+                        <div>
+                            <div class="flex items-start leading-none">
+                                <span class="text-base font-extrabold tracking-tight text-[#094074]">Tickydo</span>
+                                <span class="text-[7px] font-bold text-slate-400 ml-0.5">TM</span>
+                            </div>
+                            <div class="text-[8px] font-semibold tracking-wider text-[#2b9eb3]">
+                                Tap | Ticket | Travel
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-teal-400/20 text-teal-300 border border-teal-400/30">
+                        BDT ৳
+                    </span>
+                </div>
+
+                <!-- Nav Menu (NO RESET BUTTON ANYWHERE) -->
+                <nav class="p-3 space-y-1 overflow-y-auto">
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg transition nav-active">
+                        <i class="fa-solid fa-chart-pie w-6 text-left"></i> Dashboard
+                    </button>
+                    <button onclick="switchTab('journal')" id="nav-journal" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 transition">
+                        <i class="fa-solid fa-book w-6 text-left"></i> Journal Entries
+                    </button>
+                    <button onclick="switchTab('ledger')" id="nav-ledger" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 transition">
+                        <i class="fa-solid fa-folder-open w-6 text-left"></i> General Ledger (GL)
+                    </button>
+                    <button onclick="switchTab('trial')" id="nav-trial" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 transition">
+                        <i class="fa-solid fa-scale-balanced w-6 text-left"></i> Trial Balance (TB)
+                    </button>
+                    <button onclick="switchTab('statements')" id="nav-statements" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 transition">
+                        <i class="fa-solid fa-file-invoice-dollar w-6 text-left"></i> Financial Statements
+                    </button>
+                    <button onclick="switchTab('coa')" id="nav-coa" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 transition">
+                        <i class="fa-solid fa-list-ol w-6 text-left"></i> Chart of Accounts
+                    </button>
+
+                    <!-- SUPER ADMIN EXCLUSIVE NAV -->
+                    <div id="super-admin-nav-wrapper" class="pt-3 mt-3 border-t border-white/10 hidden">
+                        <div class="px-3 pb-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-shield-halved"></i> Super Admin Only
+                        </div>
+                        <button onclick="switchTab('users')" id="nav-users" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 text-amber-200 transition">
+                            <i class="fa-solid fa-user-plus w-6 text-left"></i> Manage Users / Add Person
+                        </button>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Sidebar Footer -->
+            <div class="p-4 border-t border-white/10 bg-[#052342] text-xs space-y-1.5">
+                <div class="flex items-center justify-between text-slate-300">
+                    <span class="text-[11px] text-slate-400">User:</span>
+                    <span id="sidebar-user-name" class="font-semibold text-white truncate max-w-[130px]">Super Admin</span>
+                </div>
+                <div class="flex items-center justify-between text-slate-400 text-[11px]">
+                    <span>Phone:</span>
+                    <span id="sidebar-user-phone" class="font-mono text-emerald-400 font-semibold">01911935220</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            
+            <!-- Top Header -->
+            <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0 no-print">
+                <div class="flex items-center gap-3">
+                    <h1 id="page-title" class="text-base sm:text-lg font-bold text-slate-800">Financial Overview (BDT ৳)</h1>
+                    <span id="role-badge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300">
+                        Super Admin
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-2.5">
+                    <button onclick="openNewTransactionModal()" class="bg-tickydo-navy hover:bg-tickydo-navy-dark text-white px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition">
+                        <i class="fa-solid fa-plus"></i> <span>New Journal Entry</span>
+                    </button>
+                    <button onclick="exportGLDumpCSV()" class="border border-slate-300 hover:bg-slate-100 text-slate-700 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium hidden sm:flex items-center gap-1.5 transition" title="Download Complete General Ledger Dump">
+                        <i class="fa-solid fa-download text-emerald-600"></i> <span>GL Dump CSV</span>
+                    </button>
+                    <button onclick="handleLogout()" class="border border-slate-300 hover:bg-rose-50 hover:border-rose-200 text-slate-700 hover:text-rose-700 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-right-from-bracket text-rose-600"></i> <span class="hidden sm:inline">Sign Out</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Scrollable View Area -->
+            <main class="flex-1 overflow-y-auto p-6 space-y-6">
+
+                <!-- ========================================== -->
+                <!-- 1. DASHBOARD VIEW                          -->
+                <!-- ========================================== -->
+                <section id="view-dashboard" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <span class="text-xs font-semibold text-slate-500 uppercase">Total Assets (IAS 1)</span>
+                            <p id="kpi-assets" class="text-2xl font-extrabold text-slate-900 mt-3">৳ 0.00</p>
+                            <p class="text-[11px] text-slate-400 mt-1">Current & Non-Current Assets</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <span class="text-xs font-semibold text-slate-500 uppercase">Operating Revenue</span>
+                            <p id="kpi-revenue" class="text-2xl font-extrabold text-emerald-600 mt-3">৳ 0.00</p>
+                            <p class="text-[11px] text-slate-400 mt-1">IFRS 18 Operating Inflow</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <span class="text-xs font-semibold text-slate-500 uppercase">Operating Profit / (Loss)</span>
+                            <p id="kpi-op-profit" class="text-2xl font-extrabold text-[#094074] mt-3">৳ 0.00</p>
+                            <p class="text-[11px] text-slate-400 mt-1">IFRS 18 Mandatory Subtotal</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <span class="text-xs font-semibold text-slate-500 uppercase">Profit / (Loss) for Period</span>
+                            <p id="kpi-net" class="text-2xl font-extrabold text-indigo-700 mt-3">৳ 0.00</p>
+                            <p class="text-[11px] text-slate-400 mt-1">Transferred to Retained Earnings</p>
+                        </div>
+                    </div>
+
+                    <!-- Recent Transactions -->
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+                            <div>
+                                <h2 class="font-bold text-slate-800">Recent Transactions (BDT ৳)</h2>
+                                <p class="text-xs text-slate-500">Double-entry accounting entries — Edit, Delete, or Print Voucher</p>
+                            </div>
+                            <button onclick="switchTab('journal')" class="text-xs font-semibold text-tickydo-navy hover:underline">View All Journal Entries &rarr;</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead class="bg-slate-50 text-slate-600 border-b border-slate-200 text-xs uppercase">
+                                    <tr>
+                                        <th class="py-3 px-4">Date</th>
+                                        <th class="py-3 px-4">Voucher / Branch</th>
+                                        <th class="py-3 px-4">Particulars & Narration</th>
+                                        <th class="py-3 px-4">Account Code</th>
+                                        <th class="py-3 px-4 text-right">Amount (BDT)</th>
+                                        <th class="py-3 px-4 text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboard-tx-list" class="divide-y divide-slate-200"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================== -->
+                <!-- 2. JOURNAL ENTRIES VIEW                    -->
+                <!-- ========================================== -->
+                <section id="view-journal" class="hidden space-y-6">
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex flex-wrap justify-between items-center gap-4">
+                            <div>
+                                <h2 class="font-bold text-slate-800">General Journal Register</h2>
+                                <p class="text-xs text-slate-500">Filter by searchable account dropdown, keyword, or date range</p>
+                            </div>
+                            <button onclick="openNewTransactionModal()" class="bg-tickydo-navy hover:bg-tickydo-navy-dark text-white px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-sm">
+                                <i class="fa-solid fa-plus"></i> Add Journal Entry
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2 border-t border-slate-100">
+                            <!-- Searchable Dropdown for Journal Account Filter -->
+                            <div class="lg:col-span-2">
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Filter by Account (Searchable)</label>
+                                <div id="sdd-journal-filter"></div>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Search Text / Voucher</label>
+                                <input type="text" id="journal-search" oninput="renderDashboardAndJournal()" placeholder="Voucher, narration..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#094074]">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">From Date</label>
+                                <input type="date" id="journal-date-from" onchange="renderDashboardAndJournal()" class="w-full border border-slate-300 rounded-lg px-2.5 py-2 text-xs">
+                            </div>
+                            <div class="flex items-end gap-2">
+                                <div class="flex-1">
+                                    <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">To Date</label>
+                                    <input type="date" id="journal-date-to" onchange="renderDashboardAndJournal()" class="w-full border border-slate-300 rounded-lg px-2.5 py-2 text-xs">
+                                </div>
+                                <button onclick="clearJournalFilters()" class="px-3 py-2 text-xs font-medium border border-slate-300 rounded-lg hover:bg-slate-100 text-slate-600">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead class="bg-slate-50 text-slate-600 border-b border-slate-200 text-xs uppercase">
+                                    <tr>
+                                        <th class="py-3 px-4">Date</th>
+                                        <th class="py-3 px-4">Voucher No</th>
+                                        <th class="py-3 px-4">Account Titles & Narration</th>
+                                        <th class="py-3 px-4 text-center">Code</th>
+                                        <th class="py-3 px-4 text-right">Debit (৳)</th>
+                                        <th class="py-3 px-4 text-right">Credit (৳)</th>
+                                        <th class="py-3 px-4 text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="journal-table-body" class="divide-y divide-slate-200"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================== -->
+                <!-- 3. GENERAL LEDGER (GL) - UNIFIED & DUMP    -->
+                <!-- ========================================== -->
+                <section id="view-ledger" class="hidden space-y-6">
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <div>
+                                <h2 class="font-bold text-slate-800">General Ledger (All Accounts Unified & Filterable)</h2>
+                                <p class="text-xs text-slate-500">All ledger postings displayed together by default — filter by specific account or download complete GL Dump</p>
+                            </div>
+                            <button onclick="exportGLDumpCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition">
+                                <i class="fa-solid fa-file-csv"></i> Export GL Dump (CSV/Excel)
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-3 border-t border-slate-100">
+                            <div class="lg:col-span-2">
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Select Account (Searchable Dropdown)</label>
+                                <div id="sdd-gl-account"></div>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Keyword Search</label>
+                                <input type="text" id="gl-search-keyword" oninput="renderLedger()" placeholder="Search narration, voucher, code..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#094074]">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">From Date</label>
+                                <input type="date" id="gl-date-from" onchange="renderLedger()" class="w-full border border-slate-300 rounded-lg px-2.5 py-2 text-xs">
+                            </div>
+                            <div class="flex items-end gap-2">
+                                <div class="flex-1">
+                                    <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">To Date</label>
+                                    <input type="date" id="gl-date-to" onchange="renderLedger()" class="w-full border border-slate-300 rounded-lg px-2.5 py-2 text-xs">
+                                </div>
+                                <button onclick="clearGLFilters()" class="px-3 py-2 text-xs font-medium border border-slate-300 rounded-lg hover:bg-slate-100 text-slate-600">All</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div id="ledger-header-info" class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex flex-wrap justify-between items-center gap-2"></div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead class="bg-white text-slate-600 border-b border-slate-200 text-xs uppercase">
+                                    <tr>
+                                        <th class="py-3 px-4">Date</th>
+                                        <th class="py-3 px-4">Voucher No</th>
+                                        <th class="py-3 px-4">Account Code</th>
+                                        <th class="py-3 px-4">Account Name</th>
+                                        <th class="py-3 px-4">Contra Account</th>
+                                        <th class="py-3 px-4 text-right text-emerald-700">Debit (৳)</th>
+                                        <th class="py-3 px-4 text-right text-rose-700">Credit (৳)</th>
+                                        <th class="py-3 px-4">Narration</th>
+                                        <th class="py-3 px-4 text-right">Running Balance (৳)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ledger-table-body" class="divide-y divide-slate-200"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================== -->
+                <!-- 4. TRIAL BALANCE (SINGLE NET COLUMN)       -->
+                <!-- ========================================== -->
+                <section id="view-trial" class="hidden space-y-6">
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="px-6 py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-4">
+                            <div>
+                                <h2 class="font-bold text-slate-800">Trial Balance — Single Net Column Format</h2>
+                                <p class="text-xs text-slate-500">Unique accounts with Positive (+) figures for Debit balances and Negative (-) figures for Credit balances</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <input type="text" id="tb-search" oninput="renderTrialBalance()" placeholder="Search account or code..." class="border border-slate-300 rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-[#094074]">
+                                <button onclick="exportTrialBalanceCSV()" class="bg-tickydo-navy hover:bg-tickydo-navy-dark text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-sm transition">
+                                    <i class="fa-solid fa-file-csv"></i> Export TB (CSV)
+                                </button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead class="bg-slate-50 text-slate-600 border-b border-slate-200 text-xs uppercase">
+                                    <tr>
+                                        <th class="py-3 px-6">Account Code</th>
+                                        <th class="py-3 px-6">Account Title</th>
+                                        <th class="py-3 px-6">Element Type</th>
+                                        <th class="py-3 px-6">IFRS 18 / IAS 1 Classification</th>
+                                        <th class="py-3 px-6 text-right">Net Balance (BDT ৳) <span class="text-[10px] font-normal lowercase block text-slate-400">(+ Debit / - Credit)</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="trial-table-body" class="divide-y divide-slate-200"></tbody>
+                                <tfoot id="trial-table-foot" class="bg-slate-100 font-bold text-slate-900 border-t-2 border-slate-300"></tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================== -->
+                <!-- 5. FINANCIAL STATEMENTS (IFRS 18 & IAS 1)  -->
+                <!-- ========================================== -->
+                <section id="view-statements" class="hidden space-y-6">
+                    <!-- Export Bar -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-wrap justify-between items-center gap-4 no-print">
+                        <div>
+                            <div class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-[#094074] px-2.5 py-0.5 rounded-full border border-blue-200 mb-1">
+                                <i class="fa-solid fa-scale-balanced"></i> IFRS 18 & IAS 1 Compliant Presentation
+                            </div>
+                            <h2 class="font-bold text-slate-800 text-base">Corporate Financial Statements</h2>
+                            <p class="text-xs text-slate-500">Statement of Profit or Loss (IFRS 18 Categories & Mandatory Subtotals) & Statement of Financial Position (IAS 1)</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <button onclick="exportFinancialStatementsCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition">
+                                <i class="fa-solid fa-file-excel"></i> Export Financial Statements (Excel/CSV)
+                            </button>
+                            <button onclick="window.print()" class="bg-tickydo-navy hover:bg-tickydo-navy-dark text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition">
+                                <i class="fa-solid fa-print"></i> Print / PDF Statements
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Statement of Profit or Loss (IFRS 18) -->
+                        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                            <div>
+                                <div class="px-6 py-4 border-b border-slate-200 bg-[#094074] text-white">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h2 class="font-bold text-base">Tickydo — Statement of Profit or Loss</h2>
+                                            <p class="text-xs text-blue-100 mt-0.5">Prepared in accordance with IFRS 18 (Presentation and Disclosure in Financial Statements)</p>
+                                        </div>
+                                        <span class="text-[11px] font-mono bg-white/15 px-2 py-0.5 rounded">BDT (৳)</span>
+                                    </div>
+                                </div>
+                                <div id="income-statement-body" class="p-6 space-y-4 text-sm"></div>
+                            </div>
+                        </div>
+
+                        <!-- Statement of Financial Position (IAS 1 / IFRS 18) -->
+                        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                            <div>
+                                <div class="px-6 py-4 border-b border-slate-200 bg-[#094074] text-white">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h2 class="font-bold text-base">Tickydo — Statement of Financial Position</h2>
+                                            <p class="text-xs text-blue-100 mt-0.5">Prepared in accordance with IAS 1 & IFRS 18 (Current / Non-Current Classification)</p>
+                                        </div>
+                                        <span class="text-[11px] font-mono bg-white/15 px-2 py-0.5 rounded">BDT (৳)</span>
+                                    </div>
+                                </div>
+                                <div id="balance-sheet-body" class="p-6 space-y-4 text-sm"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================== -->
+                <!-- 6. CHART OF ACCOUNTS (CRUD + IFRS SUBCAT)  -->
+                <!-- ========================================== -->
+                <section id="view-coa" class="hidden space-y-6">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
+                            <div>
+                                <h2 class="font-bold text-slate-800">Add New Account to Chart of Accounts</h2>
+                                <p class="text-xs text-slate-500">All users can Add & Edit accounts. <strong class="text-amber-700">Delete Account is restricted exclusively to Super Admin.</strong></p>
+                            </div>
+                        </div>
+                        <form id="coa-form" onsubmit="saveAccountFolio(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Account Code</label>
+                                <input type="text" id="coa-folio" placeholder="e.g. TF-106" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Account Title</label>
+                                <input type="text" id="coa-name" placeholder="Account Name" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Element Type (Searchable)</label>
+                                <div id="sdd-coa-type"></div>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">IFRS 18 / IAS 1 Sub-Category</label>
+                                <div id="sdd-coa-subcat"></div>
+                            </div>
+                            <div class="flex items-end">
+                                <button type="submit" class="w-full bg-tickydo-navy hover:bg-tickydo-navy-dark text-white rounded-lg px-4 py-2 text-sm font-semibold transition shadow-sm">
+                                    <i class="fa-solid fa-plus mr-1"></i> Add Account
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="px-6 py-4 border-b border-slate-200 flex flex-wrap justify-between items-center gap-4">
+                            <div>
+                                <h3 class="font-bold text-slate-800">Chart of Accounts Directory</h3>
+                                <p class="text-xs text-slate-500">Edit fields inline or click Edit. Super Admin can delete unused accounts.</p>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <div class="w-64" id="sdd-coa-filter"></div>
+                                <input type="text" id="coa-search-input" oninput="renderCOA()" placeholder="Search code or title..." class="border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#094074]">
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead class="bg-slate-50 text-slate-600 border-b border-slate-200 text-xs uppercase">
+                                    <tr>
+                                        <th class="py-3 px-5">Account Code</th>
+                                        <th class="py-3 px-5">Account Title</th>
+                                        <th class="py-3 px-5">Element Type</th>
+                                        <th class="py-3 px-5">IFRS 18 / IAS 1 Sub-Category</th>
+                                        <th class="py-3 px-5 text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="coa-table-body" class="divide-y divide-slate-200"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================== -->
+                <!-- 7. SUPER ADMIN: MANAGE USERS / ADD PERSON  -->
+                <!-- ========================================== -->
+                <section id="view-users" class="hidden space-y-6">
+                    <div class="bg-gradient-to-r from-[#094074] to-[#0d589e] text-white p-6 rounded-xl shadow-sm">
+                        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider bg-amber-400 text-slate-900 px-2.5 py-0.5 rounded-full mb-2">
+                            <i class="fa-solid fa-crown"></i> Super Admin Exclusive Panel
+                        </div>
+                        <h2 class="text-xl font-bold">Manage Users & Add Person</h2>
+                        <p class="text-xs text-blue-100 mt-1">Register staff with phone number and initial password. Regular users cannot access this panel or delete COA accounts.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-slate-800 mb-4 text-sm uppercase tracking-wider">Register New Person</h3>
+                        <form id="add-user-form" onsubmit="handleAddPerson(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Full Name</label>
+                                <input type="text" id="new-user-name" placeholder="e.g. Tanvir Ahmed" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Phone Number (Login ID)</label>
+                                <input type="text" id="new-user-phone" placeholder="01XXXXXXXXX" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Designation / Role</label>
+                                <select id="new-user-role" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white">
+                                    <option value="Senior Accountant">Senior Accountant</option>
+                                    <option value="Auditor">Auditor</option>
+                                    <option value="Finance Manager">Finance Manager</option>
+                                    <option value="Assistant Accountant">Assistant Accountant</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">First Password</label>
+                                <input type="text" id="new-user-pass" placeholder="Set initial password" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-mono">
+                            </div>
+                            <div class="flex items-end">
+                                <button type="submit" class="w-full bg-tickydo-navy hover:bg-tickydo-navy-dark text-white font-semibold py-2 px-4 rounded-lg text-sm shadow-sm transition">
+                                    <i class="fa-solid fa-user-plus mr-1"></i> Add Person
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+                            <h3 class="font-bold text-slate-800">Registered Users & Credentials</h3>
+                            <span id="user-count-badge" class="text-xs font-semibold bg-blue-50 text-blue-800 px-2.5 py-1 rounded-full">1 User</span>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead class="bg-slate-50 text-slate-600 border-b border-slate-200 text-xs uppercase">
+                                    <tr>
+                                        <th class="py-3 px-6">Full Name</th>
+                                        <th class="py-3 px-6">Designation / Role</th>
+                                        <th class="py-3 px-6">Phone Number</th>
+                                        <th class="py-3 px-6">Password (Editable)</th>
+                                        <th class="py-3 px-6 text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="users-table-body" class="divide-y divide-slate-200"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL 1: ADD / EDIT TRANSACTION            -->
+    <!-- ========================================== -->
+    <div id="tx-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center z-50 p-4 no-print">
+        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-visible">
+            <div class="px-6 py-4 bg-tickydo-navy text-white flex justify-between items-center rounded-t-2xl">
+                <h3 id="modal-title" class="font-bold text-base">Record Double-Entry Transaction</h3>
+                <button onclick="closeTransactionModal()" class="text-white/70 hover:text-white text-xl leading-none">&times;</button>
+            </div>
+            <form id="tx-form" onsubmit="handleTransactionSubmit(event)" class="p-6 space-y-4 text-sm">
+                <input type="hidden" id="tx-id">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Date</label>
+                        <input type="date" id="tx-date" required class="w-full border border-slate-300 rounded-lg px-3 py-2">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Voucher No.</label>
+                        <input type="text" id="tx-ref" placeholder="TV-1008" required class="w-full border border-slate-300 rounded-lg px-3 py-2 font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Branch / Division</label>
+                        <input type="text" id="tx-branch" placeholder="Head Office" required class="w-full border border-slate-300 rounded-lg px-3 py-2">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-emerald-700 uppercase mb-1">Debit Account (Dr.) — Searchable</label>
+                        <div id="sdd-tx-debit"></div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-rose-700 uppercase mb-1">Credit Account (Cr.) — Searchable</label>
+                        <div id="sdd-tx-credit"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Amount in BDT (৳)</label>
+                    <input type="number" id="tx-amount" step="0.01" min="0.01" placeholder="0.00" required class="w-full border border-slate-300 rounded-lg px-3 py-2 font-bold text-base text-slate-900">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Narration / Particulars</label>
+                    <input type="text" id="tx-desc" placeholder="Enter transaction explanation..." required class="w-full border border-slate-300 rounded-lg px-3 py-2">
+                </div>
+
+                <div id="tx-form-error" class="hidden p-2.5 rounded-lg bg-rose-50 text-rose-700 text-xs font-medium"></div>
+
+                <div class="flex justify-end gap-3 pt-3 border-t border-slate-200">
+                    <button type="button" onclick="closeTransactionModal()" class="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-medium">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-lg bg-tickydo-navy hover:bg-tickydo-navy-dark text-white font-semibold shadow-sm">Save Transaction</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL 2: PRINTABLE VOUCHER PREVIEW         -->
+    <!-- ========================================== -->
+    <div id="voucher-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden">
+            <div class="px-6 py-4 bg-tickydo-navy text-white flex justify-between items-center no-print">
+                <h3 class="font-bold text-base">Accounting Voucher Preview</h3>
+                <button onclick="closeVoucherModal()" class="text-white/70 hover:text-white text-xl leading-none">&times;</button>
+            </div>
+            <div id="voucher-print-area" class="p-6 space-y-4 text-sm"></div>
+            <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex justify-end gap-3 no-print">
+                <button type="button" onclick="closeVoucherModal()" class="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 text-xs font-semibold">Close</button>
+                <button type="button" onclick="window.print()" class="px-4 py-2 rounded-lg bg-tickydo-navy text-white text-xs font-semibold flex items-center gap-1.5">
+                    <i class="fa-solid fa-print"></i> Print Voucher
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL 3: CONFIRMATION DELETE MODAL         -->
+    <!-- ========================================== -->
+    <div id="delete-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center z-50 p-4 no-print">
+        <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 overflow-hidden p-6">
+            <div class="flex items-center gap-3 text-rose-600 mb-3">
+                <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-triangle-exclamation text-lg"></i>
+                </div>
+                <h3 id="delete-modal-title" class="font-bold text-base text-slate-900">Confirm Deletion</h3>
+            </div>
+            <p id="delete-modal-message" class="text-sm text-slate-600 leading-relaxed"></p>
+            <div class="flex justify-end gap-3 mt-6">
+                <button type="button" onclick="closeDeleteModal()" class="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 text-sm font-medium">Cancel</button>
+                <button type="button" id="confirm-delete-btn" class="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-sm font-semibold shadow-sm">Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- APPLICATION SCRIPT                         -->
+    <!-- ========================================== -->
+    <script>
+        const SUPER_ADMIN_PHONE = '01911935220';
+        const SUPER_ADMIN_PASS  = 'super1234';
+
+        // Primary localStorage keys (preserving both tickydo_* and tickydo_erp_* for 100% backward compatibility)
+        const KEY_USERS = 'tickydo_users';
+        const KEY_ACCOUNTS = 'tickydo_accounts';
+        const KEY_TX = 'tickydo_transactions';
+
+        // IFRS 18 & IAS 1 Sub-Category Options
+        const SUBCATEGORY_OPTIONS = [
+            // IAS 1 / IFRS 18 Statement of Financial Position
+            { value: 'Current Assets', label: 'IAS 1: Current Assets', typeGroup: 'Asset' },
+            { value: 'Non-Current Assets', label: 'IAS 1: Non-Current Assets', typeGroup: 'Asset' },
+            { value: 'Current Liabilities', label: 'IAS 1: Current Liabilities', typeGroup: 'Liability' },
+            { value: 'Non-Current Liabilities', label: 'IAS 1: Non-Current Liabilities', typeGroup: 'Liability' },
+            { value: 'Equity', label: 'IAS 1: Equity & Share Capital', typeGroup: 'Equity' },
+            // IFRS 18 Statement of Profit or Loss
+            { value: 'Operating Revenue', label: 'IFRS 18: Operating Category (Revenue)', typeGroup: 'Revenue' },
+            { value: 'Operating Expense', label: 'IFRS 18: Operating Category (Expense)', typeGroup: 'Expense' },
+            { value: 'Investing Income', label: 'IFRS 18: Investing Category (Income)', typeGroup: 'Revenue' },
+            { value: 'Investing Expense', label: 'IFRS 18: Investing Category (Expense)', typeGroup: 'Expense' },
+            { value: 'Financing Income', label: 'IFRS 18: Financing Category (Income)', typeGroup: 'Revenue' },
+            { value: 'Financing Expense', label: 'IFRS 18: Financing Category (Expense)', typeGroup: 'Expense' },
+            { value: 'Income Taxes', label: 'IFRS 18: Income Taxes Category', typeGroup: 'Expense' }
+        ];
+
+        const ELEMENT_TYPE_OPTIONS = [
+            { value: 'Asset', label: 'Asset (Debit Normal)' },
+            { value: 'Liability', label: 'Liability (Credit Normal)' },
+            { value: 'Equity', label: 'Equity (Credit Normal)' },
+            { value: 'Revenue', label: 'Revenue / Income (Credit Normal)' },
+            { value: 'Expense', label: 'Expense / Tax (Debit Normal)' }
+        ];
+
+        const defaultUsers = [
+            {
+                id: 'usr_super',
+                name: 'Super Admin',
+                role: 'Super Admin',
+                phone: SUPER_ADMIN_PHONE,
+                password: SUPER_ADMIN_PASS,
+                isSuper: true
+            }
+        ];
+
+        const defaultAccounts = [
+            { id: 'acc_101', folio: 'TF-101', name: 'Cash in Hand', type: 'Asset', subCategory: 'Current Assets' },
+            { id: 'acc_102', folio: 'TF-102', name: 'Commercial Bank Account (BDT)', type: 'Asset', subCategory: 'Current Assets' },
+            { id: 'acc_103', folio: 'TF-103', name: 'Mobile Financial Services Wallet', type: 'Asset', subCategory: 'Current Assets' },
+            { id: 'acc_104', folio: 'TF-104', name: 'Accounts Receivable', type: 'Asset', subCategory: 'Current Assets' },
+            { id: 'acc_105', folio: 'TF-105', name: 'Office & IT Equipment', type: 'Asset', subCategory: 'Non-Current Assets' },
+            { id: 'acc_201', folio: 'TF-201', name: 'Accounts Payable', type: 'Liability', subCategory: 'Current Liabilities' },
+            { id: 'acc_202', folio: 'TF-202', name: 'Long-Term Bank Loan', type: 'Liability', subCategory: 'Non-Current Liabilities' },
+            { id: 'acc_301', folio: 'TF-301', name: 'Owner\'s Equity / Share Capital', type: 'Equity', subCategory: 'Equity' },
+            { id: 'acc_401', folio: 'TF-401', name: 'Operational Service Revenue', type: 'Revenue', subCategory: 'Operating Revenue' },
+            { id: 'acc_402', folio: 'TF-402', name: 'Commission & Advisory Income', type: 'Revenue', subCategory: 'Operating Revenue' },
+            { id: 'acc_403', folio: 'TF-403', name: 'Investment & Dividend Income', type: 'Revenue', subCategory: 'Investing Income' },
+            { id: 'acc_501', folio: 'TF-501', name: 'Cloud Server & Software Licensing', type: 'Expense', subCategory: 'Operating Expense' },
+            { id: 'acc_502', folio: 'TF-502', name: 'Office Rent & Utilities', type: 'Expense', subCategory: 'Operating Expense' },
+            { id: 'acc_503', folio: 'TF-503', name: 'Salaries & Professional Fees', type: 'Expense', subCategory: 'Operating Expense' },
+            { id: 'acc_504', folio: 'TF-504', name: 'Interest on Bank Borrowings', type: 'Expense', subCategory: 'Financing Expense' },
+            { id: 'acc_505', folio: 'TF-505', name: 'Corporate Income Tax Expense', type: 'Expense', subCategory: 'Income Taxes' }
+        ];
+
+        const defaultTransactions = [
+            { id: 'tx_101', date: '2026-10-01', ref: 'TV-1001', branch: 'Head Office', debitId: 'acc_102', creditId: 'acc_301', amount: 1500000, desc: 'Initial corporate capital deposit into commercial bank account' },
+            { id: 'tx_102', date: '2026-10-05', ref: 'TV-1002', branch: 'Corporate HQ', debitId: 'acc_105', creditId: 'acc_102', amount: 185000, desc: 'Acquisition of workstations and accounting hardware' },
+            { id: 'tx_103', date: '2026-10-12', ref: 'TV-1003', branch: 'Dhaka Division', debitId: 'acc_101', creditId: 'acc_401', amount: 450000, desc: 'Cash collection from operational service delivery' },
+            { id: 'tx_104', date: '2026-10-18', ref: 'TV-1004', branch: 'Online Portal', debitId: 'acc_103', creditId: 'acc_402', amount: 125000, desc: 'Advisory and digital service commission received via MFS wallet' },
+            { id: 'tx_105', date: '2026-10-22', ref: 'TV-1005', branch: 'Head Office', debitId: 'acc_501', creditId: 'acc_102', amount: 35000, desc: 'Monthly cloud hosting and database infrastructure billing' },
+            { id: 'tx_106', date: '2026-10-26', ref: 'TV-1006', branch: 'Head Office', debitId: 'acc_502', creditId: 'acc_101', amount: 55000, desc: 'Office premises rent and electricity settlement' },
+            { id: 'tx_107', date: '2026-10-28', ref: 'TV-1007', branch: 'Head Office', debitId: 'acc_503', creditId: 'acc_102', amount: 195000, desc: 'Monthly staff salaries and professional honorarium disbursement' }
+        ];
+
+        let users = [];
+        let accounts = [];
+        let transactions = [];
+        let currentUser = null;
+        let currentLang = 'en';
+
+        // Searchable Dropdown State Registry
+        const sddRegistry = {};
+
+        // ==========================================
+        // REUSABLE SEARCHABLE DROPDOWN COMPONENT
+        // ==========================================
+        function createSearchableDropdown(containerId, options, selectedValue, onSelectCallback, placeholder = 'Search & Select...') {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            sddRegistry[containerId] = {
+                options: options || [],
+                selectedValue: selectedValue !== undefined ? selectedValue : (options[0]?.value ?? ''),
+                onSelect: onSelectCallback,
+                placeholder,
+                isOpen: false
+            };
+
+            renderSearchableDropdownDOM(containerId);
+        }
+
+        function setSearchableDropdownValue(containerId, value) {
+            if (!sddRegistry[containerId]) return;
+            sddRegistry[containerId].selectedValue = value;
+            renderSearchableDropdownDOM(containerId);
+        }
+
+        function getSearchableDropdownValue(containerId) {
+            return sddRegistry[containerId] ? sddRegistry[containerId].selectedValue : '';
+        }
+
+        function renderSearchableDropdownDOM(containerId) {
+            const state = sddRegistry[containerId];
+            const container = document.getElementById(containerId);
+            if (!container || !state) return;
+
+            const selectedOpt = state.options.find(o => String(o.value) === String(state.selectedValue));
+            const displayLabel = selectedOpt ? selectedOpt.label : state.placeholder;
+
+            container.innerHTML = `
+                <div class="relative w-full text-xs" data-sdd="${containerId}">
+                    <button type="button" onclick="toggleSDD('${containerId}', event)" class="w-full flex items-center justify-between border border-slate-300 bg-white hover:border-slate-400 rounded-lg px-3 py-2 text-left text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-[#094074] transition">
+                        <span class="truncate pr-2">${displayLabel}</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 shrink-0"></i>
+                    </button>
+                    <div id="${containerId}-menu" class="hidden absolute left-0 right-0 mt-1 bg-white border border-slate-200 rounded-xl shadow-2xl z-50 overflow-hidden">
+                        <div class="p-2 border-b border-slate-100 bg-slate-50">
+                            <div class="relative">
+                                <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-slate-400 text-[11px]"></i>
+                                <input type="text" id="${containerId}-search" oninput="filterSDDOptions('${containerId}', this.value)" placeholder="Type code or name to filter..." class="w-full pl-7 pr-2.5 py-1.5 text-xs bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#094074]">
+                            </div>
+                        </div>
+                        <div id="${containerId}-list" class="max-h-52 overflow-y-auto divide-y divide-slate-50"></div>
+                    </div>
+                </div>
+            `;
+
+            populateSDDList(containerId, '');
+        }
+
+        function populateSDDList(containerId, query) {
+            const state = sddRegistry[containerId];
+            const listEl = document.getElementById(`${containerId}-list`);
+            if (!state || !listEl) return;
+
+            const q = (query || '').toLowerCase().trim();
+            const filtered = state.options.filter(o => o.label.toLowerCase().includes(q) || String(o.value).toLowerCase().includes(q));
+
+            if (filtered.length === 0) {
+                listEl.innerHTML = `<div class="px-3 py-3 text-slate-400 text-center italic">No matching options</div>`;
+                return;
+            }
+
+            listEl.innerHTML = filtered.map(o => {
+                const isSelected = String(o.value) === String(state.selectedValue);
+                return `
+                    <button type="button" onclick="selectSDDOption('${containerId}', '${String(o.value).replace(/'/g, "\\'")}', event)" class="w-full text-left px-3 py-2 hover:bg-blue-50 transition flex items-center justify-between ${isSelected ? 'bg-blue-50/80 font-bold text-[#094074]' : 'text-slate-700'}">
+                        <span class="truncate">${o.label}</span>
+                        ${isSelected ? '<i class="fa-solid fa-check text-[#094074] text-[10px] ml-2"></i>' : ''}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function toggleSDD(containerId, e) {
+            if (e) e.stopPropagation();
+            const menu = document.getElementById(`${containerId}-menu`);
+            if (!menu) return;
+
+            const isHidden = menu.classList.contains('hidden');
+            closeAllSDDs();
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                const searchInput = document.getElementById(`${containerId}-search`);
+                if (searchInput) {
+                    searchInput.value = '';
+                    populateSDDList(containerId, '');
+                    setTimeout(() => searchInput.focus(), 20);
+                }
+            }
+        }
+
+        function filterSDDOptions(containerId, query) {
+            populateSDDList(containerId, query);
+        }
+
+        function selectSDDOption(containerId, value, e) {
+            if (e) e.stopPropagation();
+            const state = sddRegistry[containerId];
+            if (!state) return;
+            state.selectedValue = value;
+            closeAllSDDs();
+            renderSearchableDropdownDOM(containerId);
+            if (typeof state.onSelect === 'function') {
+                state.onSelect(value);
+            }
+        }
+
+        function closeAllSDDs() {
+            Object.keys(sddRegistry).forEach(id => {
+                const menu = document.getElementById(`${id}-menu`);
+                if (menu) menu.classList.add('hidden');
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('[data-sdd]')) {
+                closeAllSDDs();
+            }
+        });
+
+        // ==========================================
+        // DATA MIGRATION & PERSISTENCE
+        // ==========================================
+        function inferDefaultSubCategory(acc) {
+            if (acc.subCategory && SUBCATEGORY_OPTIONS.some(s => s.value === acc.subCategory)) {
+                return acc.subCategory;
+            }
+            const nameLower = (acc.name || '').toLowerCase();
+            if (acc.type === 'Asset') {
+                if (nameLower.includes('equipment') || nameLower.includes('server') || nameLower.includes('property') || nameLower.includes('vehicle') || nameLower.includes('machinery') || nameLower.includes('building') || nameLower.includes('furniture')) {
+                    return 'Non-Current Assets';
+                }
+                return 'Current Assets';
+            }
+            if (acc.type === 'Liability') {
+                if (nameLower.includes('long-term') || nameLower.includes('loan') || nameLower.includes('mortgage') || nameLower.includes('debenture')) {
+                    return 'Non-Current Liabilities';
+                }
+                return 'Current Liabilities';
+            }
+            if (acc.type === 'Equity') return 'Equity';
+            if (acc.type === 'Revenue') {
+                if (nameLower.includes('invest') || nameLower.includes('dividend') || nameLower.includes('rent income')) return 'Investing Income';
+                if (nameLower.includes('interest income') || nameLower.includes('finance')) return 'Financing Income';
+                return 'Operating Revenue';
+            }
+            if (acc.type === 'Expense') {
+                if (nameLower.includes('tax')) return 'Income Taxes';
+                if (nameLower.includes('interest') || nameLower.includes('bank charge') || nameLower.includes('finance')) return 'Financing Expense';
+                if (nameLower.includes('invest') || nameLower.includes('loss on sale')) return 'Investing Expense';
+                return 'Operating Expense';
+            }
+            return 'Current Assets';
+        }
+
+        function loadState() {
+            try {
+                // Merge or load Users from either key so no user is ever lost
+                const rawUsersPrimary = JSON.parse(localStorage.getItem(KEY_USERS) || 'null');
+                const rawUsersLegacy = JSON.parse(localStorage.getItem('tickydo_erp_users') || 'null');
+                users = Array.isArray(rawUsersPrimary) && rawUsersPrimary.length
+                    ? rawUsersPrimary
+                    : (Array.isArray(rawUsersLegacy) && rawUsersLegacy.length ? rawUsersLegacy : [...defaultUsers]);
+
+                const superIdx = users.findIndex(u => u.phone === SUPER_ADMIN_PHONE);
+                if (superIdx === -1) {
+                    users.unshift(defaultUsers[0]);
+                } else {
+                    users[superIdx].password = SUPER_ADMIN_PASS;
+                    users[superIdx].isSuper = true;
+                    users[superIdx].role = 'Super Admin';
+                }
+
+                // Merge or load Accounts from either key and auto-upgrade with IFRS 18 / IAS 1 subCategory
+                const rawAccPrimary = JSON.parse(localStorage.getItem(KEY_ACCOUNTS) || 'null');
+                const rawAccLegacy = JSON.parse(localStorage.getItem('tickydo_erp_accounts') || 'null');
+                const baseAccounts = Array.isArray(rawAccPrimary) && rawAccPrimary.length
+                    ? rawAccPrimary
+                    : (Array.isArray(rawAccLegacy) && rawAccLegacy.length ? rawAccLegacy : [...defaultAccounts]);
+
+                accounts = baseAccounts.map(acc => ({
+                    ...acc,
+                    subCategory: inferDefaultSubCategory(acc)
+                }));
+
+                // Merge or load Transactions from either key
+                const rawTxPrimary = JSON.parse(localStorage.getItem(KEY_TX) || 'null');
+                const rawTxLegacy = JSON.parse(localStorage.getItem('tickydo_erp_transactions') || 'null');
+                transactions = Array.isArray(rawTxPrimary)
+                    ? rawTxPrimary
+                    : (Array.isArray(rawTxLegacy) ? rawTxLegacy : [...defaultTransactions]);
+
+                // Sync both storage key sets immediately
+                persistToLocalStorage();
+
+                const savedSession = JSON.parse(sessionStorage.getItem('tickydo_erp_session') || 'null');
+                if (savedSession) {
+                    const verified = users.find(u => u.phone === savedSession.phone);
+                    if (verified) currentUser = verified;
+                }
+            } catch (e) {
+                console.error('State load fallback:', e);
+                users = [...defaultUsers];
+                accounts = [...defaultAccounts];
+                transactions = [...defaultTransactions];
+            }
+        }
+
+        function persistToLocalStorage() {
+            try {
+                // Save to both 'tickydo_*' and 'tickydo_erp_*' keys so any version retains all data
+                localStorage.setItem(KEY_USERS, JSON.stringify(users));
+                localStorage.setItem('tickydo_erp_users', JSON.stringify(users));
+
+                localStorage.setItem(KEY_ACCOUNTS, JSON.stringify(accounts));
+                localStorage.setItem('tickydo_erp_accounts', JSON.stringify(accounts));
+
+                localStorage.setItem(KEY_TX, JSON.stringify(transactions));
+                localStorage.setItem('tickydo_erp_transactions', JSON.stringify(transactions));
+            } catch (e) {
+                console.error('Storage save warning:', e);
+            }
+        }
+
+        function saveState() {
+            persistToLocalStorage();
+            refreshSearchableDropdowns();
+            renderAll();
+        }
+
+        function isSuperAdminUser() {
+            return Boolean(currentUser && (currentUser.isSuper || currentUser.role === 'Super Admin' || currentUser.phone === SUPER_ADMIN_PHONE));
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const bg = type === 'error' ? 'bg-rose-600' : 'bg-[#094074]';
+            const icon = type === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check';
+            toast.className = `${bg} text-white px-4 py-3 rounded-xl shadow-lg text-xs font-semibold flex items-center gap-2.5 pointer-events-auto transition-all duration-300`;
+            toast.innerHTML = `<i class="fa-solid ${icon} text-sm"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3200);
+        }
+
+        // ==========================================
+        // INTERNATIONALIZATION (EN | বাংলা)
+        // ==========================================
+        const i18n = {
+            en: {
+                heroTitle: 'Precision in Audit.<br>Excellence in Accounting.<br>Every Financial Entry Tracked.',
+                heroSub: 'IFRS 18 & IAS 1 compliant financial statements, unified general ledger dump, and rigorous corporate auditing in Bangladeshi Taka (BDT ৳).',
+                signinHeading: 'Sign in',
+                signinSub: 'Use the phone number your financial manager registered for you.',
+                phoneLabel: 'Phone number',
+                passLabel: 'Password',
+                signinBtn: 'Sign in',
+                forgotText: 'Forgot your password? Ask your company admin to reset it.'
+            },
+            bn: {
+                heroTitle: 'অডিটে নিখুঁত নির্ভুলতা।<br>অ্যাকাউন্টিংয়ে উৎকর্ষ।<br>প্রতিটি আর্থিক লেনদেনের সঠিক হিসাব।',
+                heroSub: 'IFRS 18 এবং IAS 1 অনুসারে ফাইন্যান্সিয়াল স্টেটমেন্ট, জেনারেল লেজার ডাম্প এবং কর্পোরেট অডিট ট্র্যাকিং (BDT ৳)।',
+                signinHeading: 'সাইন ইন',
+                signinSub: 'আপনার ফাইন্যান্স ম্যানেজার যে ফোন নম্বরটি নিবন্ধন করেছেন তা ব্যবহার করুন।',
+                phoneLabel: 'ফোন নম্বর',
+                passLabel: 'পাসওয়ার্ড',
+                signinBtn: 'সাইন ইন',
+                forgotText: 'পাসওয়ার্ড ভুলে গেছেন? আপনার কোম্পানি অ্যাডমিনকে রিসেট করতে বলুন।'
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const t = i18n[lang];
+            document.getElementById('lang-hero-title').innerHTML = t.heroTitle;
+            document.getElementById('lang-hero-sub').innerText = t.heroSub;
+            document.getElementById('lang-signin-heading').innerText = t.signinHeading;
+            document.getElementById('lang-signin-sub').innerText = t.signinSub;
+            document.getElementById('lang-phone-label').innerText = t.phoneLabel;
+            document.getElementById('lang-pass-label').innerText = t.passLabel;
+            document.getElementById('lang-signin-btn').innerText = t.signinBtn;
+            document.getElementById('lang-forgot-text').innerText = t.forgotText;
+
+            const btnEn = document.getElementById('btn-lang-en');
+            const btnBn = document.getElementById('btn-lang-bn');
+            if (lang === 'en') {
+                btnEn.className = 'px-3.5 py-1 rounded-md text-xs font-bold bg-tickydo-navy text-white transition';
+                btnBn.className = 'px-3.5 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+            } else {
+                btnBn.className = 'px-3.5 py-1 rounded-md text-xs font-bold bg-tickydo-navy text-white transition';
+                btnEn.className = 'px-3.5 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+            }
+        }
+
+        function togglePasswordVisibility(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // ==========================================
+        // AUTHENTICATION & USER MANAGEMENT
+        // ==========================================
+        function handleLogin(e) {
+            e.preventDefault();
+            const phone = document.getElementById('login-phone').value.trim();
+            const pass = document.getElementById('login-password').value;
+            const errBox = document.getElementById('login-error');
+
+            const matchedUser = users.find(u => u.phone === phone && u.password === pass);
+            if (!matchedUser) {
+                errBox.classList.remove('hidden');
+                return;
+            }
+
+            errBox.classList.add('hidden');
+            currentUser = matchedUser;
+            sessionStorage.setItem('tickydo_erp_session', JSON.stringify(currentUser));
+            enterERPScreen();
+            showToast(`Signed in as ${currentUser.name} (${currentUser.role})`);
+        }
+
+        function enterERPScreen() {
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('erp-screen').classList.remove('hidden');
+
+            document.getElementById('sidebar-user-name').innerText = currentUser.name;
+            document.getElementById('sidebar-user-phone').innerText = currentUser.phone;
+            const roleBadge = document.getElementById('role-badge');
+            roleBadge.innerText = `${currentUser.name} • ${currentUser.role}`;
+
+            const superNav = document.getElementById('super-admin-nav-wrapper');
+            if (isSuperAdminUser()) {
+                superNav.classList.remove('hidden');
+                roleBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300';
+            } else {
+                superNav.classList.add('hidden');
+                roleBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200';
+            }
+
+            refreshSearchableDropdowns();
+            switchTab('dashboard');
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            sessionStorage.removeItem('tickydo_erp_session');
+            document.getElementById('login-password').value = '';
+            document.getElementById('erp-screen').classList.add('hidden');
+            document.getElementById('auth-screen').classList.remove('hidden');
+            showToast('Signed out successfully.');
+        }
+
+        function handleAddPerson(e) {
+            e.preventDefault();
+            if (!isSuperAdminUser()) {
+                showToast('Only Super Admin can add users.', 'error');
+                return;
+            }
+
+            const name = document.getElementById('new-user-name').value.trim();
+            const phone = document.getElementById('new-user-phone').value.trim();
+            const role = document.getElementById('new-user-role').value;
+            const password = document.getElementById('new-user-pass').value.trim();
+
+            if (users.some(u => u.phone === phone)) {
+                showToast('This phone number is already registered!', 'error');
+                return;
+            }
+
+            users.push({
+                id: 'usr_' + Date.now(),
+                name,
+                role,
+                phone,
+                password,
+                isSuper: false
+            });
+
+            e.target.reset();
+            saveState();
+            showToast(`Registered ${name} (${phone}) successfully!`);
+        }
+
+        function updatePersonPassword(userId, newPass) {
+            const usr = users.find(u => u.id === userId);
+            if (usr && newPass.trim() !== '') {
+                usr.password = newPass.trim();
+                saveState();
+                showToast(`Password updated for ${usr.name}.`);
+            }
+        }
+
+        function requestDeletePerson(userId) {
+            const usr = users.find(u => u.id === userId);
+            if (!usr || usr.isSuper || usr.phone === SUPER_ADMIN_PHONE) return;
+
+            openDeleteModal(
+                'Remove User Access',
+                `Are you sure you want to remove ${usr.name} (${usr.phone}) from Tickydo ERP?`,
+                () => {
+                    users = users.filter(u => u.id !== userId);
+                    saveState();
+                    showToast(`Removed user ${usr.name}.`);
+                }
+            );
+        }
+
+        function renderUsersTable() {
+            const tbody = document.getElementById('users-table-body');
+            if (!tbody) return;
+            document.getElementById('user-count-badge').innerText = `${users.length} Registered User(s)`;
+
+            tbody.innerHTML = users.map(u => `
+                <tr class="hover:bg-slate-50">
+                    <td class="py-3 px-6 font-semibold text-slate-800 flex items-center gap-2">
+                        ${u.name}
+                        ${u.isSuper ? '<span class="text-[10px] bg-amber-100 text-amber-800 border border-amber-300 px-2 py-0.5 rounded-full font-bold">Super Admin</span>' : ''}
+                    </td>
+                    <td class="py-3 px-6 text-xs font-medium text-slate-600">${u.role}</td>
+                    <td class="py-3 px-6 font-mono text-xs font-bold text-[#094074]">${u.phone}</td>
+                    <td class="py-3 px-6">
+                        ${u.isSuper 
+                            ? `<span class="font-mono text-xs bg-slate-100 px-2.5 py-1 rounded border border-slate-200 text-slate-600">${u.password}</span>`
+                            : `<input type="text" value="${u.password}" onchange="updatePersonPassword('${u.id}', this.value)" class="font-mono text-xs bg-blue-50 border border-blue-200 rounded px-2.5 py-1 w-36 text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#094074]" title="Click to update password">`
+                        }
+                    </td>
+                    <td class="py-3 px-6 text-center">
+                        ${u.isSuper 
+                            ? '<span class="text-xs text-slate-400 italic">Protected</span>'
+                            : `<button onclick="requestDeletePerson('${u.id}')" class="px-2.5 py-1 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded text-xs font-semibold transition">
+                                <i class="fa-solid fa-user-xmark mr-1"></i> Remove
+                               </button>`
+                        }
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // ==========================================
+        // FORMATTING & HELPERS
+        // ==========================================
+        function formatBDT(num) {
+            const val = Number(num || 0);
+            const absFormatted = Math.abs(val).toLocaleString('en-BD', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            return val < 0 ? `-৳ ${absFormatted}` : `৳ ${absFormatted}`;
+        }
+
+        function formatSignedTBNumber(num) {
+            const val = Number(num || 0);
+            const absFormatted = Math.abs(val).toLocaleString('en-BD', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            if (Math.abs(val) < 0.005) return '৳ 0.00';
+            return val > 0 ? `+৳ ${absFormatted}` : `-৳ ${absFormatted}`;
+        }
+
+        function getAccount(id) {
+            return accounts.find(a => a.id === id) || {
+                id: 'unassigned',
+                folio: 'TF-000',
+                name: 'Unassigned Account',
+                type: 'Asset',
+                subCategory: 'Current Assets'
+            };
+        }
+
+        function refreshSearchableDropdowns() {
+            const accountOpts = accounts.map(a => ({
+                value: a.id,
+                label: `${a.folio} — ${a.name} (${a.subCategory || a.type})`
+            }));
+
+            const allAccountsFilterOpts = [
+                { value: 'ALL', label: 'All Accounts (Unified View)' },
+                ...accountOpts
+            ];
+
+            // Journal Filter SDD
+            const prevJournalFilter = getSearchableDropdownValue('sdd-journal-filter') || 'ALL';
+            createSearchableDropdown('sdd-journal-filter', allAccountsFilterOpts, prevJournalFilter, () => {
+                renderDashboardAndJournal();
+            }, 'Filter by Account...');
+
+            // GL Account Filter SDD (Defaults to ALL)
+            const prevGLFilter = getSearchableDropdownValue('sdd-gl-account') || 'ALL';
+            createSearchableDropdown('sdd-gl-account', allAccountsFilterOpts, prevGLFilter, () => {
+                renderLedger();
+            }, 'All Accounts (Unified GL)...');
+
+            // COA Add Form SDDs
+            const prevCoaType = getSearchableDropdownValue('sdd-coa-type') || 'Asset';
+            createSearchableDropdown('sdd-coa-type', ELEMENT_TYPE_OPTIONS, prevCoaType, (selectedType) => {
+                const matchingSub = SUBCATEGORY_OPTIONS.find(s => s.typeGroup === selectedType);
+                if (matchingSub) setSearchableDropdownValue('sdd-coa-subcat', matchingSub.value);
+            });
+
+            const prevCoaSub = getSearchableDropdownValue('sdd-coa-subcat') || 'Current Assets';
+            createSearchableDropdown('sdd-coa-subcat', SUBCATEGORY_OPTIONS, prevCoaSub, null);
+
+            // COA Filter SDD
+            const coaFilterOpts = [
+                { value: 'ALL', label: 'All Classifications' },
+                ...SUBCATEGORY_OPTIONS
+            ];
+            const prevCoaFilter = getSearchableDropdownValue('sdd-coa-filter') || 'ALL';
+            createSearchableDropdown('sdd-coa-filter', coaFilterOpts, prevCoaFilter, () => {
+                renderCOA();
+            });
+
+            // Transaction Modal Debit & Credit SDDs
+            const prevDr = getSearchableDropdownValue('sdd-tx-debit') || (accounts[0]?.id ?? '');
+            const prevCr = getSearchableDropdownValue('sdd-tx-credit') || (accounts[Math.min(7, accounts.length - 1)]?.id ?? '');
+            createSearchableDropdown('sdd-tx-debit', accountOpts, prevDr, null, 'Select Debit Account...');
+            createSearchableDropdown('sdd-tx-credit', accountOpts, prevCr, null, 'Select Credit Account...');
+        }
+
+        function switchTab(tab) {
+            if (tab === 'users' && !isSuperAdminUser()) {
+                return;
+            }
+
+            const tabs = ['dashboard', 'journal', 'ledger', 'trial', 'statements', 'coa', 'users'];
+            const titles = {
+                dashboard: 'Financial Overview (BDT ৳)',
+                journal: 'General Journal Register',
+                ledger: 'General Ledger (Unified All Accounts & Dump)',
+                trial: 'Trial Balance (Single Net Column: +Dr / -Cr)',
+                statements: 'Financial Statements (IFRS 18 & IAS 1)',
+                coa: 'Chart of Accounts (IFRS 18 & IAS 1)',
+                users: 'Manage Users (Super Admin)'
+            };
+
+            tabs.forEach(t => {
+                const viewEl = document.getElementById('view-' + t);
+                const navEl = document.getElementById('nav-' + t);
+                if (viewEl) viewEl.classList.add('hidden');
+                if (navEl) navEl.classList.remove('nav-active');
+            });
+
+            document.getElementById('view-' + tab).classList.remove('hidden');
+            document.getElementById('nav-' + tab).classList.add('nav-active');
+            document.getElementById('page-title').innerText = titles[tab];
+            renderAll();
+        }
+
+        // ==========================================
+        // ACCOUNTING ENGINE & IFRS 18 / IAS 1 METRICS
+        // ==========================================
+        function computeBalances() {
+            const map = {};
+            accounts.forEach(acc => {
+                map[acc.id] = {
+                    ...acc,
+                    subCategory: inferDefaultSubCategory(acc),
+                    debitTotal: 0,
+                    creditTotal: 0,
+                    netDrMinusCr: 0, // Positive = Debit, Negative = Credit
+                    normalBalance: 0
+                };
+            });
+
+            transactions.forEach(tx => {
+                const amt = parseFloat(tx.amount) || 0;
+                if (map[tx.debitId]) map[tx.debitId].debitTotal += amt;
+                if (map[tx.creditId]) map[tx.creditId].creditTotal += amt;
+            });
+
+            Object.values(map).forEach(acc => {
+                acc.netDrMinusCr = acc.debitTotal - acc.creditTotal;
+                if (acc.type === 'Asset' || acc.type === 'Expense') {
+                    acc.normalBalance = acc.debitTotal - acc.creditTotal;
+                } else {
+                    acc.normalBalance = acc.creditTotal - acc.debitTotal;
+                }
+            });
+            return map;
+        }
+
+        function computeIFRS18Metrics() {
+            const balances = computeBalances();
+            const list = Object.values(balances);
+
+            // IFRS 18 Statement of Profit or Loss Categories
+            const opRev = list.filter(a => a.subCategory === 'Operating Revenue');
+            const opExp = list.filter(a => a.subCategory === 'Operating Expense');
+            const invInc = list.filter(a => a.subCategory === 'Investing Income');
+            const invExp = list.filter(a => a.subCategory === 'Investing Expense');
+            const finInc = list.filter(a => a.subCategory === 'Financing Income');
+            const finExp = list.filter(a => a.subCategory === 'Financing Expense');
+            const taxes  = list.filter(a => a.subCategory === 'Income Taxes');
+
+            const sumNormal = arr => arr.reduce((s, a) => s + a.normalBalance, 0);
+
+            const totalOpRev = sumNormal(opRev);
+            const totalOpExp = sumNormal(opExp);
+            const operatingProfit = totalOpRev - totalOpExp;
+
+            const totalInvInc = sumNormal(invInc);
+            const totalInvExp = sumNormal(invExp);
+            const netInvesting = totalInvInc - totalInvExp;
+            const profitBeforeFinancingAndTax = operatingProfit + netInvesting;
+
+            const totalFinInc = sumNormal(finInc);
+            const totalFinExp = sumNormal(finExp);
+            const netFinancing = totalFinInc - totalFinExp;
+            const profitBeforeTax = profitBeforeFinancingAndTax + netFinancing;
+
+            const totalTax = sumNormal(taxes);
+            const profitForPeriod = profitBeforeTax - totalTax;
+
+            // IAS 1 Statement of Financial Position Categories
+            const nonCurrentAssets = list.filter(a => a.subCategory === 'Non-Current Assets');
+            const currentAssets = list.filter(a => a.subCategory === 'Current Assets');
+            const equityAccounts = list.filter(a => a.subCategory === 'Equity');
+            const nonCurrentLiab = list.filter(a => a.subCategory === 'Non-Current Liabilities');
+            const currentLiab = list.filter(a => a.subCategory === 'Current Liabilities');
+
+            const totalNonCurrentAssets = sumNormal(nonCurrentAssets);
+            const totalCurrentAssets = sumNormal(currentAssets);
+            const totalAssets = totalNonCurrentAssets + totalCurrentAssets;
+
+            const totalEquityBase = sumNormal(equityAccounts);
+            const totalEquity = totalEquityBase + profitForPeriod;
+
+            const totalNonCurrentLiab = sumNormal(nonCurrentLiab);
+            const totalCurrentLiab = sumNormal(currentLiab);
+            const totalLiabilities = totalNonCurrentLiab + totalCurrentLiab;
+            const totalEquityAndLiab = totalEquity + totalLiabilities;
+
+            return {
+                opRev, opExp, invInc, invExp, finInc, finExp, taxes,
+                totalOpRev, totalOpExp, operatingProfit,
+                totalInvInc, totalInvExp, netInvesting, profitBeforeFinancingAndTax,
+                totalFinInc, totalFinExp, netFinancing, profitBeforeTax,
+                totalTax, profitForPeriod,
+                nonCurrentAssets, currentAssets, equityAccounts, nonCurrentLiab, currentLiab,
+                totalNonCurrentAssets, totalCurrentAssets, totalAssets,
+                totalEquityBase, totalEquity,
+                totalNonCurrentLiab, totalCurrentLiab, totalLiabilities, totalEquityAndLiab
+            };
+        }
+
+        // ==========================================
+        // 1 & 2. RENDER DASHBOARD & JOURNAL
+        // ==========================================
+        function clearJournalFilters() {
+            document.getElementById('journal-search').value = '';
+            document.getElementById('journal-date-from').value = '';
+            document.getElementById('journal-date-to').value = '';
+            setSearchableDropdownValue('sdd-journal-filter', 'ALL');
+            renderDashboardAndJournal();
+        }
+
+        function renderDashboardAndJournal() {
+            const m = computeIFRS18Metrics();
+
+            document.getElementById('kpi-assets').innerText = formatBDT(m.totalAssets);
+            document.getElementById('kpi-revenue').innerText = formatBDT(m.totalOpRev);
+            document.getElementById('kpi-op-profit').innerText = formatBDT(m.operatingProfit);
+            document.getElementById('kpi-net').innerText = formatBDT(m.profitForPeriod);
+
+            const sortedTx = [...transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            // Dashboard Recent Table
+            const dashBody = document.getElementById('dashboard-tx-list');
+            dashBody.innerHTML = sortedTx.slice(0, 10).map(tx => {
+                const dr = getAccount(tx.debitId);
+                const cr = getAccount(tx.creditId);
+                return `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-3 px-4 whitespace-nowrap font-medium text-slate-700">${tx.date}</td>
+                        <td class="py-3 px-4 whitespace-nowrap">
+                            <div class="font-mono text-xs font-bold text-[#094074]">${tx.ref}</div>
+                            <div class="text-[11px] text-slate-400">${tx.branch || 'Head Office'}</div>
+                        </td>
+                        <td class="py-3 px-4">
+                            <div class="font-semibold text-slate-800">${dr.name} <span class="text-slate-400 font-normal">to</span> ${cr.name}</div>
+                            <div class="text-xs text-slate-500">${tx.desc}</div>
+                        </td>
+                        <td class="py-3 px-4 font-mono text-xs whitespace-nowrap font-bold text-[#094074]">
+                            ${dr.folio} / ${cr.folio}
+                        </td>
+                        <td class="py-3 px-4 text-right font-bold text-slate-900 whitespace-nowrap">${formatBDT(tx.amount)}</td>
+                        <td class="py-3 px-4 text-center whitespace-nowrap">
+                            <button onclick="previewVoucher('${tx.id}')" class="px-2 py-1 rounded bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold mr-1 transition" title="Print Voucher">
+                                <i class="fa-solid fa-print"></i>
+                            </button>
+                            <button onclick="editTransaction('${tx.id}')" class="px-2.5 py-1 rounded bg-blue-50 text-[#094074] hover:bg-blue-100 text-xs font-semibold mr-1 transition">
+                                <i class="fa-solid fa-pen-to-square"></i> Edit
+                            </button>
+                            <button onclick="requestDeleteTransaction('${tx.id}')" class="px-2.5 py-1 rounded bg-rose-50 text-rose-600 hover:bg-rose-100 text-xs font-semibold transition">
+                                <i class="fa-solid fa-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('') || `<tr><td colspan="6" class="text-center py-8 text-slate-400">No transactions recorded yet.</td></tr>`;
+
+            // Journal Register Table
+            const selectedAccFilter = getSearchableDropdownValue('sdd-journal-filter') || 'ALL';
+            const query = (document.getElementById('journal-search')?.value || '').toLowerCase().trim();
+            const dateFrom = document.getElementById('journal-date-from')?.value || '';
+            const dateTo = document.getElementById('journal-date-to')?.value || '';
+
+            const filteredTx = sortedTx.filter(tx => {
+                if (selectedAccFilter !== 'ALL' && tx.debitId !== selectedAccFilter && tx.creditId !== selectedAccFilter) return false;
+                if (dateFrom && tx.date < dateFrom) return false;
+                if (dateTo && tx.date > dateTo) return false;
+                if (!query) return true;
+                const dr = getAccount(tx.debitId);
+                const cr = getAccount(tx.creditId);
+                return (
+                    tx.ref.toLowerCase().includes(query) ||
+                    (tx.branch || '').toLowerCase().includes(query) ||
+                    tx.desc.toLowerCase().includes(query) ||
+                    tx.date.includes(query) ||
+                    dr.name.toLowerCase().includes(query) ||
+                    cr.name.toLowerCase().includes(query) ||
+                    dr.folio.toLowerCase().includes(query) ||
+                    cr.folio.toLowerCase().includes(query)
+                );
+            });
+
+            const journalBody = document.getElementById('journal-table-body');
+            journalBody.innerHTML = filteredTx.map(tx => {
+                const dr = getAccount(tx.debitId);
+                const cr = getAccount(tx.creditId);
+                return `
+                    <tr class="bg-white">
+                        <td class="py-2.5 px-4 align-top font-medium text-slate-700 whitespace-nowrap" rowspan="2">${tx.date}</td>
+                        <td class="py-2.5 px-4 align-top whitespace-nowrap" rowspan="2">
+                            <div class="font-mono text-xs text-[#094074] font-bold">${tx.ref}</div>
+                            <div class="text-[11px] text-slate-400">${tx.branch || 'Head Office'}</div>
+                        </td>
+                        <td class="py-2.5 px-4 font-semibold text-slate-800">${dr.name} <span class="text-xs font-normal text-emerald-700">(Dr.)</span></td>
+                        <td class="py-2.5 px-4 text-center font-mono text-xs font-bold text-[#094074]">${dr.folio}</td>
+                        <td class="py-2.5 px-4 text-right font-bold text-emerald-700 whitespace-nowrap">${formatBDT(tx.amount)}</td>
+                        <td class="py-2.5 px-4 text-right text-slate-300">-</td>
+                        <td class="py-2.5 px-4 text-center align-middle whitespace-nowrap" rowspan="2">
+                            <button onclick="previewVoucher('${tx.id}')" class="px-2 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded text-xs font-semibold mr-1 transition" title="Print Voucher">
+                                <i class="fa-solid fa-print"></i>
+                            </button>
+                            <button onclick="editTransaction('${tx.id}')" class="px-2.5 py-1 bg-blue-50 text-[#094074] hover:bg-blue-100 rounded text-xs font-semibold mr-1 transition">
+                                <i class="fa-solid fa-pen"></i> Edit
+                            </button>
+                            <button onclick="requestDeleteTransaction('${tx.id}')" class="px-2.5 py-1 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded text-xs font-semibold transition">
+                                <i class="fa-solid fa-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-slate-200 bg-slate-50/50">
+                        <td class="py-2.5 px-4 pl-10 text-slate-700">
+                            <div class="font-medium">To ${cr.name} <span class="text-xs font-normal text-rose-700">(Cr.)</span></div>
+                            <div class="text-xs italic text-slate-500 mt-0.5">(${tx.desc})</div>
+                        </td>
+                        <td class="py-2.5 px-4 text-center font-mono text-xs font-bold text-[#094074]">${cr.folio}</td>
+                        <td class="py-2.5 px-4 text-right text-slate-300">-</td>
+                        <td class="py-2.5 px-4 text-right font-bold text-rose-700 whitespace-nowrap">${formatBDT(tx.amount)}</td>
+                    </tr>
+                `;
+            }).join('') || `<tr><td colspan="7" class="text-center py-8 text-slate-400">No matching journal entries found.</td></tr>`;
+        }
+
+        // ==========================================
+        // 3. GENERAL LEDGER (UNIFIED + GL DUMP)
+        // ==========================================
+        function clearGLFilters() {
+            setSearchableDropdownValue('sdd-gl-account', 'ALL');
+            document.getElementById('gl-search-keyword').value = '';
+            document.getElementById('gl-date-from').value = '';
+            document.getElementById('gl-date-to').value = '';
+            renderLedger();
+        }
+
+        // Build chronological GL postings across all accounts (or filtered)
+        function buildGLPostings() {
+            const selectedAccountId = getSearchableDropdownValue('sdd-gl-account') || 'ALL';
+            const keyword = (document.getElementById('gl-search-keyword')?.value || '').toLowerCase().trim();
+            const dateFrom = document.getElementById('gl-date-from')?.value || '';
+            const dateTo = document.getElementById('gl-date-to')?.value || '';
+
+            const chronologicalTx = [...transactions].sort((a, b) => new Date(a.date) - new Date(b.date));
+            const runningByAccount = {};
+            const allEntries = [];
+
+            chronologicalTx.forEach(tx => {
+                const amt = parseFloat(tx.amount) || 0;
+                const drAcc = getAccount(tx.debitId);
+                const crAcc = getAccount(tx.creditId);
+
+                // 1. Debit Posting Leg
+                runningByAccount[drAcc.id] = (runningByAccount[drAcc.id] || 0) + amt;
+                allEntries.push({
+                    txId: tx.id,
+                    date: tx.date,
+                    ref: tx.ref,
+                    branch: tx.branch || 'Head Office',
+                    accountId: drAcc.id,
+                    accountCode: drAcc.folio,
+                    accountName: drAcc.name,
+                    contraCode: crAcc.folio,
+                    contraName: crAcc.name,
+                    debit: amt,
+                    credit: 0,
+                    netAmount: amt,
+                    narration: tx.desc,
+                    runningBalance: runningByAccount[drAcc.id]
+                });
+
+                // 2. Credit Posting Leg
+                runningByAccount[crAcc.id] = (runningByAccount[crAcc.id] || 0) - amt;
+                allEntries.push({
+                    txId: tx.id,
+                    date: tx.date,
+                    ref: tx.ref,
+                    branch: tx.branch || 'Head Office',
+                    accountId: crAcc.id,
+                    accountCode: crAcc.folio,
+                    accountName: crAcc.name,
+                    contraCode: drAcc.folio,
+                    contraName: drAcc.name,
+                    debit: 0,
+                    credit: amt,
+                    netAmount: -amt,
+                    narration: tx.desc,
+                    runningBalance: runningByAccount[crAcc.id]
+                });
+            });
+
+            return allEntries.filter(row => {
+                if (selectedAccountId !== 'ALL' && row.accountId !== selectedAccountId) return false;
+                if (dateFrom && row.date < dateFrom) return false;
+                if (dateTo && row.date > dateTo) return false;
+                if (!keyword) return true;
+                return (
+                    row.ref.toLowerCase().includes(keyword) ||
+                    row.accountCode.toLowerCase().includes(keyword) ||
+                    row.accountName.toLowerCase().includes(keyword) ||
+                    row.contraCode.toLowerCase().includes(keyword) ||
+                    row.contraName.toLowerCase().includes(keyword) ||
+                    row.narration.toLowerCase().includes(keyword) ||
+                    row.date.includes(keyword)
+                );
+            });
+        }
+
+        function renderLedger() {
+            const selectedAccountId = getSearchableDropdownValue('sdd-gl-account') || 'ALL';
+            const postings = buildGLPostings();
+
+            let totalDr = 0, totalCr = 0;
+            postings.forEach(p => {
+                totalDr += p.debit;
+                totalCr += p.credit;
+            });
+
+            const headerEl = document.getElementById('ledger-header-info');
+            if (selectedAccountId === 'ALL') {
+                headerEl.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs uppercase font-bold text-white bg-tickydo-navy px-2.5 py-1 rounded">All Accounts Unified GL</span>
+                        <span class="text-xs font-semibold text-slate-600">${postings.length} Ledger Postings Displayed</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs sm:text-sm font-bold">
+                        <span class="text-emerald-700">Total Dr: ${formatBDT(totalDr)}</span>
+                        <span class="text-rose-700">Total Cr: ${formatBDT(totalCr)}</span>
+                    </div>
+                `;
+            } else {
+                const acc = getAccount(selectedAccountId);
+                const netBal = totalDr - totalCr;
+                const balType = netBal >= 0 ? 'Dr' : 'Cr';
+                headerEl.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs uppercase font-bold text-white bg-tickydo-navy px-2.5 py-1 rounded">${acc.folio}</span>
+                        <span class="font-bold text-slate-800">${acc.name}</span>
+                        <span class="text-xs text-slate-500">(${acc.subCategory})</span>
+                    </div>
+                    <div class="text-sm font-bold">
+                        Closing Balance: <span class="text-[#094074] text-base">${formatBDT(Math.abs(netBal))} (${balType})</span>
+                    </div>
+                `;
+            }
+
+            // Columns: Date, Voucher No, Account Code, Account Name, Contra Account, Debit, Credit, Narration, Running Balance
+            const rowsHtml = postings.map(row => {
+                const balType = row.runningBalance >= 0 ? 'Dr' : 'Cr';
+                return `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-3 px-4 whitespace-nowrap text-xs font-medium">${row.date}</td>
+                        <td class="py-3 px-4 font-mono text-xs font-bold text-[#094074] whitespace-nowrap">${row.ref}</td>
+                        <td class="py-3 px-4 font-mono text-xs font-bold text-[#094074] whitespace-nowrap">${row.accountCode}</td>
+                        <td class="py-3 px-4 font-semibold text-slate-800">${row.accountName}</td>
+                        <td class="py-3 px-4 text-xs text-slate-600">${row.contraCode} — ${row.contraName}</td>
+                        <td class="py-3 px-4 text-right font-bold text-emerald-700 whitespace-nowrap">${row.debit > 0 ? formatBDT(row.debit) : '-'}</td>
+                        <td class="py-3 px-4 text-right font-bold text-rose-700 whitespace-nowrap">${row.credit > 0 ? formatBDT(row.credit) : '-'}</td>
+                        <td class="py-3 px-4 text-xs text-slate-600 max-w-xs">${row.narration}</td>
+                        <td class="py-3 px-4 text-right font-extrabold text-slate-900 whitespace-nowrap">
+                            ${formatBDT(Math.abs(row.runningBalance))} <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${balType === 'Dr' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}">${balType}</span>
+                        </td>
+                    </tr>
+                `;
+            }).join('') || `<tr><td colspan="9" class="text-center py-8 text-slate-400">No ledger postings match the current filter.</td></tr>`;
+
+            document.getElementById('ledger-table-body').innerHTML = rowsHtml;
+        }
+
+        // GL Dump Download (Debit & Credit columns strictly BEFORE Narration)
+        function exportGLDumpCSV() {
+            const postings = buildGLPostings();
+            const headers = [
+                'Date',
+                'Voucher No',
+                'Branch',
+                'Account Code',
+                'Account Title',
+                'Contra Account Code',
+                'Contra Account Title',
+                'Debit (BDT)',
+                'Credit (BDT)',
+                'Net Amount (Dr+ / Cr-)',
+                'Narration',
+                'Running Account Balance (BDT)'
+            ];
+
+            const rows = postings.map(r => [
+                r.date,
+                r.ref,
+                `"${(r.branch || '').replace(/"/g, '""')}"`,
+                r.accountCode,
+                `"${r.accountName.replace(/"/g, '""')}"`,
+                r.contraCode,
+                `"${r.contraName.replace(/"/g, '""')}"`,
+                r.debit.toFixed(2),
+                r.credit.toFixed(2),
+                r.netAmount.toFixed(2),
+                `"${(r.narration || '').replace(/"/g, '""')}"`,
+                r.runningBalance.toFixed(2)
+            ].join(','));
+
+            const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\n');
+            downloadCSVBlob(csvContent, `Tickydo_GL_Dump_${new Date().toISOString().split('T')[0]}.csv`);
+            showToast('Exported General Ledger (GL) Dump CSV with Debit/Credit before Narration!');
+        }
+
+        // ==========================================
+        // 4. TRIAL BALANCE (SINGLE NET BALANCE COLUMN)
+        // ==========================================
+        function renderTrialBalance() {
+            const balances = computeBalances();
+            const query = (document.getElementById('tb-search')?.value || '').toLowerCase().trim();
+
+            const uniqueAccounts = Object.values(balances).filter(acc => {
+                if (!query) return true;
+                return (
+                    acc.folio.toLowerCase().includes(query) ||
+                    acc.name.toLowerCase().includes(query) ||
+                    acc.type.toLowerCase().includes(query) ||
+                    (acc.subCategory || '').toLowerCase().includes(query)
+                );
+            });
+
+            let netSum = 0;
+            const rows = uniqueAccounts.map(acc => {
+                // Positive = Debit, Negative = Credit
+                const netVal = acc.netDrMinusCr;
+                netSum += netVal;
+
+                const colorClass = netVal > 0.005
+                    ? 'text-emerald-700 font-bold'
+                    : (netVal < -0.005 ? 'text-rose-700 font-bold' : 'text-slate-400 font-medium');
+
+                return `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-3 px-6 font-mono text-xs font-bold text-[#094074]">${acc.folio}</td>
+                        <td class="py-3 px-6 font-semibold text-slate-800">${acc.name}</td>
+                        <td class="py-3 px-6 text-xs text-slate-600">${acc.type}</td>
+                        <td class="py-3 px-6 text-xs"><span class="bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-full font-medium">${acc.subCategory}</span></td>
+                        <td class="py-3 px-6 text-right font-mono text-sm ${colorClass}">
+                            ${formatSignedTBNumber(netVal)}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            document.getElementById('trial-table-body').innerHTML = rows || `<tr><td colspan="5" class="text-center py-8 text-slate-400">No matching accounts in Trial Balance.</td></tr>`;
+            document.getElementById('trial-table-foot').innerHTML = `
+                <tr>
+                    <td colspan="4" class="py-3.5 px-6 text-right uppercase text-xs tracking-wider">Net Trial Balance Total (+Debit / -Credit)</td>
+                    <td class="py-3.5 px-6 text-right font-mono text-base ${Math.abs(netSum) < 0.01 ? 'text-[#094074]' : 'text-rose-600'}">
+                        ${formatSignedTBNumber(netSum)}
+                    </td>
+                </tr>
+            `;
+        }
+
+        function exportTrialBalanceCSV() {
+            const balances = computeBalances();
+            const headers = ['Account Code', 'Account Title', 'Element Type', 'IFRS 18 / IAS 1 Classification', 'Net Balance BDT (+Debit / -Credit)'];
+            const rows = Object.values(balances).map(acc => [
+                acc.folio,
+                `"${acc.name.replace(/"/g, '""')}"`,
+                acc.type,
+                `"${acc.subCategory}"`,
+                acc.netDrMinusCr.toFixed(2)
+            ].join(','));
+
+            rows.push(['', '"Net Trial Balance Total"', '', '', '0.00'].join(','));
+            const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\n');
+            downloadCSVBlob(csvContent, `Tickydo_Trial_Balance_${new Date().toISOString().split('T')[0]}.csv`);
+            showToast('Exported Single-Column Trial Balance CSV!');
+        }
+
+        // ==========================================
+        // 5. FINANCIAL STATEMENTS (IFRS 18 & IAS 1)
+        // ==========================================
+        function renderAccountLineItems(arr, negate = false) {
+            if (!arr || arr.length === 0) {
+                return `<div class="text-xs text-slate-400 italic py-1 pl-2">No activity recorded</div>`;
+            }
+            return arr.map(a => {
+                const displayAmt = negate ? -a.normalBalance : a.normalBalance;
+                return `
+                    <div class="flex justify-between py-1 pl-2 hover:bg-slate-50 rounded px-1">
+                        <span class="text-slate-700"><strong class="font-mono text-xs text-[#094074] mr-1.5">${a.folio}</strong>${a.name}</span>
+                        <span class="font-mono font-medium ${negate && a.normalBalance > 0 ? 'text-rose-700' : 'text-slate-800'}">${formatBDT(displayAmt)}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderFinancialStatements() {
+            const m = computeIFRS18Metrics();
+
+            // 1. IFRS 18 Statement of Profit or Loss
+            document.getElementById('income-statement-body').innerHTML = `
+                <!-- Operating Category -->
+                <div class="space-y-1">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-[#094074] border-b border-slate-200 pb-1">
+                        Operating Category (IFRS 18)
+                    </div>
+                    <div class="text-xs font-semibold text-slate-500 pt-1">Operating Revenue</div>
+                    ${renderAccountLineItems(m.opRev, false)}
+                    <div class="text-xs font-semibold text-slate-500 pt-2">Operating Expenses</div>
+                    ${renderAccountLineItems(m.opExp, true)}
+                    <div class="flex justify-between py-2 px-3 rounded-lg bg-slate-100 font-bold text-slate-900 border border-slate-300 mt-2">
+                        <span>Operating Profit / (Loss)</span>
+                        <span class="font-mono">${formatBDT(m.operatingProfit)}</span>
+                    </div>
+                </div>
+
+                <!-- Investing Category -->
+                <div class="space-y-1 pt-2">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-[#094074] border-b border-slate-200 pb-1">
+                        Investing Category (IFRS 18)
+                    </div>
+                    ${renderAccountLineItems(m.invInc, false)}
+                    ${m.invExp.length ? renderAccountLineItems(m.invExp, true) : ''}
+                    <div class="flex justify-between py-2 px-3 rounded-lg bg-slate-100 font-bold text-slate-900 border border-slate-300 mt-2">
+                        <span>Profit / (Loss) before Financing and Income Taxes</span>
+                        <span class="font-mono">${formatBDT(m.profitBeforeFinancingAndTax)}</span>
+                    </div>
+                </div>
+
+                <!-- Financing Category -->
+                <div class="space-y-1 pt-2">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-[#094074] border-b border-slate-200 pb-1">
+                        Financing Category (IFRS 18)
+                    </div>
+                    ${m.finInc.length ? renderAccountLineItems(m.finInc, false) : ''}
+                    ${renderAccountLineItems(m.finExp, true)}
+                    <div class="flex justify-between py-2 px-3 rounded-lg bg-slate-100 font-bold text-slate-900 border border-slate-300 mt-2">
+                        <span>Profit / (Loss) before Income Taxes</span>
+                        <span class="font-mono">${formatBDT(m.profitBeforeTax)}</span>
+                    </div>
+                </div>
+
+                <!-- Income Taxes Category -->
+                <div class="space-y-1 pt-2">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-[#094074] border-b border-slate-200 pb-1">
+                        Income Taxes Category (IFRS 18)
+                    </div>
+                    ${renderAccountLineItems(m.taxes, true)}
+                </div>
+
+                <!-- Final Profit or Loss -->
+                <div class="p-3.5 rounded-xl bg-tickydo-navy text-white flex justify-between items-center font-bold text-base shadow mt-3">
+                    <span>Profit / (Loss) for the Period</span>
+                    <span class="font-mono">${formatBDT(m.profitForPeriod)}</span>
+                </div>
+            `;
+
+            // 2. IAS 1 Statement of Financial Position
+            document.getElementById('balance-sheet-body').innerHTML = `
+                <!-- ASSETS -->
+                <div class="space-y-2">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-[#094074] border-b border-slate-200 pb-1">
+                        Assets (IAS 1)
+                    </div>
+                    <div class="text-xs font-bold text-slate-600">Non-Current Assets</div>
+                    ${renderAccountLineItems(m.nonCurrentAssets, false)}
+                    <div class="flex justify-between text-xs font-bold text-slate-700 border-t border-slate-100 pt-1 pl-2">
+                        <span>Total Non-Current Assets</span>
+                        <span class="font-mono">${formatBDT(m.totalNonCurrentAssets)}</span>
+                    </div>
+
+                    <div class="text-xs font-bold text-slate-600 pt-2">Current Assets</div>
+                    ${renderAccountLineItems(m.currentAssets, false)}
+                    <div class="flex justify-between text-xs font-bold text-slate-700 border-t border-slate-100 pt-1 pl-2">
+                        <span>Total Current Assets</span>
+                        <span class="font-mono">${formatBDT(m.totalCurrentAssets)}</span>
+                    </div>
+
+                    <div class="flex justify-between py-2 px-3 rounded-lg bg-blue-50 font-extrabold text-[#094074] border border-blue-200 mt-2">
+                        <span>Total Assets</span>
+                        <span class="font-mono">${formatBDT(m.totalAssets)}</span>
+                    </div>
+                </div>
+
+                <!-- EQUITY AND LIABILITIES -->
+                <div class="space-y-2 pt-3">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-[#094074] border-b border-slate-200 pb-1">
+                        Equity and Liabilities (IAS 1)
+                    </div>
+                    <div class="text-xs font-bold text-slate-600">Equity</div>
+                    ${renderAccountLineItems(m.equityAccounts, false)}
+                    <div class="flex justify-between py-1 pl-2 text-indigo-700 font-semibold">
+                        <span>Retained Earnings (Profit / Loss for the Period)</span>
+                        <span class="font-mono">${formatBDT(m.profitForPeriod)}</span>
+                    </div>
+                    <div class="flex justify-between text-xs font-bold text-slate-700 border-t border-slate-100 pt-1 pl-2">
+                        <span>Total Equity</span>
+                        <span class="font-mono">${formatBDT(m.totalEquity)}</span>
+                    </div>
+
+                    <div class="text-xs font-bold text-slate-600 pt-2">Non-Current Liabilities</div>
+                    ${renderAccountLineItems(m.nonCurrentLiab, false)}
+                    <div class="flex justify-between text-xs font-bold text-slate-700 border-t border-slate-100 pt-1 pl-2">
+                        <span>Total Non-Current Liabilities</span>
+                        <span class="font-mono">${formatBDT(m.totalNonCurrentLiab)}</span>
+                    </div>
+
+                    <div class="text-xs font-bold text-slate-600 pt-2">Current Liabilities</div>
+                    ${renderAccountLineItems(m.currentLiab, false)}
+                    <div class="flex justify-between text-xs font-bold text-slate-700 border-t border-slate-100 pt-1 pl-2">
+                        <span>Total Current Liabilities</span>
+                        <span class="font-mono">${formatBDT(m.totalCurrentLiab)}</span>
+                    </div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-tickydo-navy text-white flex justify-between items-center font-bold text-base shadow mt-3">
+                    <span>Total Equity and Liabilities</span>
+                    <span class="font-mono">${formatBDT(m.totalEquityAndLiab)}</span>
+                </div>
+            `;
+        }
+
+        function exportFinancialStatementsCSV() {
+            const m = computeIFRS18Metrics();
+            const lines = [];
+
+            lines.push('"TICKYDO ERP - FINANCIAL STATEMENTS (IFRS 18 & IAS 1 COMPLIANT)"');
+            lines.push(`"Reporting Currency:","BDT (Bangladeshi Taka)","Export Date:","${new Date().toISOString().split('T')[0]}"`);
+            lines.push('');
+
+            // Part 1: IFRS 18 Statement of Profit or Loss
+            lines.push('"1. STATEMENT OF PROFIT OR LOSS (IFRS 18 FORMAT)"');
+            lines.push('"Category / Classification","Account Code","Line Item / Account Title","Amount (BDT)"');
+
+            lines.push('"Operating Category (Revenue)","","",""');
+            m.opRev.forEach(a => lines.push(`"Operating Revenue","${a.folio}","${a.name.replace(/"/g, '""')}",${a.normalBalance.toFixed(2)}`));
+            lines.push('"Operating Category (Expenses)","","",""');
+            m.opExp.forEach(a => lines.push(`"Operating Expense","${a.folio}","${a.name.replace(/"/g, '""')}",${(-a.normalBalance).toFixed(2)}`));
+            lines.push(`"IFRS 18 Mandatory Subtotal","","Operating Profit / (Loss)",${m.operatingProfit.toFixed(2)}`);
+            lines.push('');
+
+            lines.push('"Investing Category","","",""');
+            m.invInc.forEach(a => lines.push(`"Investing Income","${a.folio}","${a.name.replace(/"/g, '""')}",${a.normalBalance.toFixed(2)}`));
+            m.invExp.forEach(a => lines.push(`"Investing Expense","${a.folio}","${a.name.replace(/"/g, '""')}",${(-a.normalBalance).toFixed(2)}`));
+            lines.push(`"IFRS 18 Mandatory Subtotal","","Profit / (Loss) before Financing and Income Taxes",${m.profitBeforeFinancingAndTax.toFixed(2)}`);
+            lines.push('');
+
+            lines.push('"Financing Category","","",""');
+            m.finInc.forEach(a => lines.push(`"Financing Income","${a.folio}","${a.name.replace(/"/g, '""')}",${a.normalBalance.toFixed(2)}`));
+            m.finExp.forEach(a => lines.push(`"Financing Expense","${a.folio}","${a.name.replace(/"/g, '""')}",${(-a.normalBalance).toFixed(2)}`));
+            lines.push(`"IFRS 18 Subtotal","","Profit / (Loss) before Income Taxes",${m.profitBeforeTax.toFixed(2)}`);
+            lines.push('');
+
+            lines.push('"Income Taxes Category","","",""');
+            m.taxes.forEach(a => lines.push(`"Income Tax Expense","${a.folio}","${a.name.replace(/"/g, '""')}",${(-a.normalBalance).toFixed(2)}`));
+            lines.push(`"IFRS 18 Total","","Profit / (Loss) for the Period",${m.profitForPeriod.toFixed(2)}`);
+            lines.push('');
+            lines.push('');
+
+            // Part 2: IAS 1 Statement of Financial Position
+            lines.push('"2. STATEMENT OF FINANCIAL POSITION (IAS 1 & IFRS 18 FORMAT)"');
+            lines.push('"Classification","Account Code","Account Title","Amount (BDT)"');
+
+            lines.push('"ASSETS","","",""');
+            lines.push('"Non-Current Assets","","",""');
+            m.nonCurrentAssets.forEach(a => lines.push(`"Non-Current Assets","${a.folio}","${a.name.replace(/"/g, '""')}",${a.normalBalance.toFixed(2)}`));
+            lines.push(`"Subtotal","","Total Non-Current Assets",${m.totalNonCurrentAssets.toFixed(2)}`);
+
+            lines.push('"Current Assets","","",""');
+            m.currentAssets.forEach(a => lines.push(`"Current Assets","${a.folio}","${a.name.replace(/"/g, '""')}",${a.normalBalance.toFixed(2)}`));
+            lines.push(`"Subtotal","","Total Current Assets",${m.totalCurrentAssets.toFixed(2)}`);
+            lines.push(`"TOTAL ASSETS","","Total Assets",${m.totalAssets.toFixed(2)}`);
+            lines.push('');
+
+            lines.push('"EQUITY AND LIABILITIES","","",""');
+            lines.push('"Equity","","",""');
+            m.equityAccounts.forEach(a => lines.push(`"Equity","${a.folio}","${a.name.replace(/"/g, '""')}",${a.normalBalance.toFixed(2)}`));
+            lines.push(`"Equity","RE-CURR","Retained Earnings (Profit / Loss for the Period)",${m.profitForPeriod.toFixed(2)}`);
+            lines.push(`"Subtotal","","Total Equity",${m.totalEquity.toFixed(2)}`);
+
+            lines.push('"Non-Current Liabilities","","",""');
+            m.nonCurrentLiab.forEach(a => lines.push(`"Non-Current Liabilities","${a.folio}","${a.name.replace(/"/g, '""')}",${a.normalBalance.toFixed(2)}`));
+            lines.push(`"Subtotal","","Total Non-Current Liabilities",${m.totalNonCurrentLiab.toFixed(2)}`);
+
+            lines.push('"Current Liabilities","","",""');
+            m.currentLiab.forEach(a => lines.push(`"Current Liabilities","${a.folio}","${a.name.replace(/"/g, '""')}",${a.normalBalance.toFixed(2)}`));
+            lines.push(`"Subtotal","","Total Current Liabilities",${m.totalCurrentLiab.toFixed(2)}`);
+            lines.push(`"TOTAL EQUITY AND LIABILITIES","","Total Equity and Liabilities",${m.totalEquityAndLiab.toFixed(2)}`);
+
+            const csvContent = '\uFEFF' + lines.join('\n');
+            downloadCSVBlob(csvContent, `Tickydo_IFRS18_IAS1_Financial_Statements_${new Date().toISOString().split('T')[0]}.csv`);
+            showToast('Exported IFRS 18 & IAS 1 Financial Statements to CSV/Excel!');
+        }
+
+        function downloadCSVBlob(content, filename) {
+            const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+        }
+
+        // ==========================================
+        // 6. CHART OF ACCOUNTS (CRUD + SUPER ADMIN DELETE)
+        // ==========================================
+        function renderCOA() {
+            const types = ['Asset', 'Liability', 'Equity', 'Revenue', 'Expense'];
+            const filterSub = getSearchableDropdownValue('sdd-coa-filter') || 'ALL';
+            const searchQ = (document.getElementById('coa-search-input')?.value || '').toLowerCase().trim();
+            const isSuper = isSuperAdminUser();
+
+            const filteredAccounts = accounts.filter(acc => {
+                if (filterSub !== 'ALL' && acc.subCategory !== filterSub) return false;
+                if (!searchQ) return true;
+                return (
+                    acc.folio.toLowerCase().includes(searchQ) ||
+                    acc.name.toLowerCase().includes(searchQ) ||
+                    acc.type.toLowerCase().includes(searchQ) ||
+                    (acc.subCategory || '').toLowerCase().includes(searchQ)
+                );
+            });
+
+            document.getElementById('coa-table-body').innerHTML = filteredAccounts.map(acc => `
+                <tr class="hover:bg-slate-50 transition">
+                    <td class="py-3 px-5">
+                        <input type="text" id="coa-code-${acc.id}" value="${acc.folio}" onchange="updateFolioCode('${acc.id}', this.value)" class="font-mono text-xs font-bold text-[#094074] bg-blue-50 border border-blue-200 rounded-lg px-2.5 py-1.5 w-28 focus:outline-none focus:ring-2 focus:ring-[#094074]">
+                    </td>
+                    <td class="py-3 px-5">
+                        <input type="text" id="coa-name-${acc.id}" value="${acc.name}" onchange="updateAccountName('${acc.id}', this.value)" class="font-medium text-slate-800 bg-white border border-slate-200 hover:border-slate-300 rounded-lg px-2.5 py-1.5 w-full max-w-xs focus:border-[#094074] focus:outline-none">
+                    </td>
+                    <td class="py-3 px-5">
+                        <select onchange="updateAccountCategory('${acc.id}', this.value)" class="text-xs font-semibold text-slate-700 bg-slate-100 border border-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none">
+                            ${types.map(t => `<option value="${t}" ${acc.type === t ? 'selected' : ''}>${t}</option>`).join('')}
+                        </select>
+                    </td>
+                    <td class="py-3 px-5">
+                        <select onchange="updateAccountSubCategory('${acc.id}', this.value)" class="text-xs font-semibold text-[#094074] bg-blue-50/60 border border-blue-200 rounded-lg px-2.5 py-1.5 focus:outline-none">
+                            ${SUBCATEGORY_OPTIONS.map(s => `<option value="${s.value}" ${acc.subCategory === s.value ? 'selected' : ''}>${s.label}</option>`).join('')}
+                        </select>
+                    </td>
+                    <td class="py-3 px-5 text-center whitespace-nowrap">
+                        <button type="button" onclick="focusCOAEdit('${acc.id}')" class="px-2.5 py-1 rounded bg-blue-50 text-[#094074] hover:bg-blue-100 text-xs font-semibold mr-1 transition">
+                            <i class="fa-solid fa-pen"></i> Edit
+                        </button>
+                        ${isSuper
+                            ? `<button type="button" onclick="requestDeleteAccount('${acc.id}')" class="px-2.5 py-1 rounded bg-rose-50 text-rose-600 hover:bg-rose-100 text-xs font-semibold transition" title="Super Admin Delete">
+                                <i class="fa-solid fa-trash"></i> Delete
+                               </button>`
+                            : `<span class="text-[11px] text-slate-400 italic ml-1" title="Only Super Admin can delete accounts"><i class="fa-solid fa-lock"></i> Super Admin</span>`
+                        }
+                    </td>
+                </tr>
+            `).join('') || `<tr><td colspan="5" class="text-center py-8 text-slate-400">No matching accounts found.</td></tr>`;
+        }
+
+        function focusCOAEdit(accId) {
+            const el = document.getElementById(`coa-name-${accId}`);
+            if (el) {
+                el.focus();
+                el.select();
+                showToast('Edit the Account Code, Title, or IFRS Classification directly.');
+            }
+        }
+
+        function updateFolioCode(accId, newFolio) {
+            const acc = accounts.find(a => a.id === accId);
+            if (acc && newFolio.trim() !== '') {
+                acc.folio = newFolio.trim();
+                saveState();
+                showToast(`Account code updated to ${acc.folio}`);
+            }
+        }
+
+        function updateAccountName(accId, newName) {
+            const acc = accounts.find(a => a.id === accId);
+            if (acc && newName.trim() !== '') {
+                acc.name = newName.trim();
+                saveState();
+                showToast(`Account renamed to ${acc.name}`);
+            }
+        }
+
+        function updateAccountCategory(accId, newCategory) {
+            const acc = accounts.find(a => a.id === accId);
+            if (acc) {
+                acc.type = newCategory;
+                acc.subCategory = inferDefaultSubCategory({ ...acc, subCategory: '' });
+                saveState();
+                showToast(`Element updated to ${newCategory}`);
+            }
+        }
+
+        function updateAccountSubCategory(accId, newSub) {
+            const acc = accounts.find(a => a.id === accId);
+            if (acc) {
+                acc.subCategory = newSub;
+                const matchedOpt = SUBCATEGORY_OPTIONS.find(s => s.value === newSub);
+                if (matchedOpt) acc.type = matchedOpt.typeGroup;
+                saveState();
+                showToast(`IFRS Classification updated to ${newSub}`);
+            }
+        }
+
+        function saveAccountFolio(e) {
+            e.preventDefault();
+            const folio = document.getElementById('coa-folio').value.trim();
+            const name = document.getElementById('coa-name').value.trim();
+            const type = getSearchableDropdownValue('sdd-coa-type') || 'Asset';
+            const subCategory = getSearchableDropdownValue('sdd-coa-subcat') || 'Current Assets';
+
+            if (accounts.some(a => a.folio.toLowerCase() === folio.toLowerCase())) {
+                showToast(`Account code ${folio} already exists!`, 'error');
+                return;
+            }
+
+            accounts.push({ id: 'acc_' + Date.now(), folio, name, type, subCategory });
+            e.target.reset();
+            saveState();
+            showToast(`Added ${folio} — ${name}`);
+        }
+
+        function requestDeleteAccount(accId) {
+            if (!isSuperAdminUser()) {
+                showToast('Only Super Admin is permitted to delete accounts.', 'error');
+                return;
+            }
+            const acc = accounts.find(a => a.id === accId);
+            if (!acc) return;
+
+            const linkedTxCount = transactions.filter(t => t.debitId === accId || t.creditId === accId).length;
+            if (linkedTxCount > 0) {
+                showToast(`Cannot delete ${acc.folio} (${acc.name}) because ${linkedTxCount} journal transaction(s) are posted to it.`, 'error');
+                return;
+            }
+
+            openDeleteModal(
+                `Delete Account ${acc.folio}?`,
+                `Are you sure you want to permanently delete "${acc.folio} — ${acc.name}" from the Chart of Accounts?`,
+                () => {
+                    accounts = accounts.filter(a => a.id !== accId);
+                    saveState();
+                    showToast(`Deleted account ${acc.folio}`);
+                }
+            );
+        }
+
+        // ==========================================
+        // JOURNAL TRANSACTION MODAL HANDLERS
+        // ==========================================
+        function openNewTransactionModal() {
+            refreshSearchableDropdowns();
+            document.getElementById('modal-title').innerText = 'Record Double-Entry Transaction (BDT ৳)';
+            document.getElementById('tx-id').value = '';
+            document.getElementById('tx-date').value = new Date().toISOString().split('T')[0];
+            document.getElementById('tx-ref').value = 'TV-' + (1000 + transactions.length + 1);
+            document.getElementById('tx-branch').value = 'Head Office';
+            if (accounts[0]) setSearchableDropdownValue('sdd-tx-debit', accounts[0].id);
+            if (accounts[8]) setSearchableDropdownValue('sdd-tx-credit', accounts[8].id);
+            document.getElementById('tx-amount').value = '';
+            document.getElementById('tx-desc').value = '';
+            document.getElementById('tx-form-error').classList.add('hidden');
+            document.getElementById('tx-modal').classList.remove('hidden');
+            document.getElementById('tx-modal').classList.add('flex');
+        }
+
+        function editTransaction(id) {
+            const tx = transactions.find(t => t.id === id);
+            if (!tx) return;
+            refreshSearchableDropdowns();
+            document.getElementById('modal-title').innerText = `Edit Transaction (${tx.ref})`;
+            document.getElementById('tx-id').value = tx.id;
+            document.getElementById('tx-date').value = tx.date;
+            document.getElementById('tx-ref').value = tx.ref;
+            document.getElementById('tx-branch').value = tx.branch || 'Head Office';
+            setSearchableDropdownValue('sdd-tx-debit', tx.debitId);
+            setSearchableDropdownValue('sdd-tx-credit', tx.creditId);
+            document.getElementById('tx-amount').value = tx.amount;
+            document.getElementById('tx-desc').value = tx.desc;
+            document.getElementById('tx-form-error').classList.add('hidden');
+            document.getElementById('tx-modal').classList.remove('hidden');
+            document.getElementById('tx-modal').classList.add('flex');
+        }
+
+        function closeTransactionModal() {
+            document.getElementById('tx-modal').classList.add('hidden');
+            document.getElementById('tx-modal').classList.remove('flex');
+        }
+
+        function handleTransactionSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('tx-id').value;
+            const date = document.getElementById('tx-date').value;
+            const ref = document.getElementById('tx-ref').value.trim();
+            const branch = document.getElementById('tx-branch').value.trim();
+            const debitId = getSearchableDropdownValue('sdd-tx-debit');
+            const creditId = getSearchableDropdownValue('sdd-tx-credit');
+            const amount = parseFloat(document.getElementById('tx-amount').value);
+            const desc = document.getElementById('tx-desc').value.trim();
+            const errEl = document.getElementById('tx-form-error');
+
+            if (!debitId || !creditId) {
+                errEl.innerText = 'Please select both Debit and Credit accounts.';
+                errEl.classList.remove('hidden');
+                return;
+            }
+
+            if (debitId === creditId) {
+                errEl.innerText = 'Debit and Credit accounts cannot be the same.';
+                errEl.classList.remove('hidden');
+                return;
+            }
+
+            if (id) {
+                const idx = transactions.findIndex(t => t.id === id);
+                if (idx > -1) {
+                    transactions[idx] = { id, date, ref, branch, debitId, creditId, amount, desc };
+                    showToast(`Updated Voucher ${ref}`);
+                }
+            } else {
+                transactions.push({ id: 'tx_' + Date.now(), date, ref, branch, debitId, creditId, amount, desc });
+                showToast(`Posted Voucher ${ref}`);
+            }
+
+            closeTransactionModal();
+            saveState();
+        }
+
+        function previewVoucher(id) {
+            const tx = transactions.find(t => t.id === id);
+            if (!tx) return;
+            const dr = getAccount(tx.debitId);
+            const cr = getAccount(tx.creditId);
+
+            document.getElementById('voucher-print-area').innerHTML = `
+                <div class="border-b border-slate-200 pb-3 flex justify-between items-start">
+                    <div>
+                        <h4 class="text-lg font-extrabold text-[#094074]">Tickydo™ ERP</h4>
+                        <p class="text-xs text-slate-500">Tap | Ticket | Travel — Accounting & Financial Voucher</p>
+                    </div>
+                    <div class="text-right text-xs">
+                        <div class="font-mono font-bold text-slate-800">Voucher: ${tx.ref}</div>
+                        <div class="text-slate-500">Date: ${tx.date}</div>
+                        <div class="text-slate-500">Branch: ${tx.branch || 'Head Office'}</div>
+                    </div>
+                </div>
+                <table class="w-full text-xs border-collapse my-3">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 border-y border-slate-200">
+                            <th class="py-2 px-3 text-left">Code</th>
+                            <th class="py-2 px-3 text-left">Account Head</th>
+                            <th class="py-2 px-3 text-right">Debit (৳)</th>
+                            <th class="py-2 px-3 text-right">Credit (৳)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr>
+                            <td class="py-2 px-3 font-mono font-bold">${dr.folio}</td>
+                            <td class="py-2 px-3 font-semibold">${dr.name} (Dr.)</td>
+                            <td class="py-2 px-3 text-right font-bold">${formatBDT(tx.amount)}</td>
+                            <td class="py-2 px-3 text-right">-</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-3 font-mono font-bold">${cr.folio}</td>
+                            <td class="py-2 px-3 pl-6">To ${cr.name} (Cr.)</td>
+                            <td class="py-2 px-3 text-right">-</td>
+                            <td class="py-2 px-3 text-right font-bold">${formatBDT(tx.amount)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-xs bg-slate-50 p-3 rounded-lg border border-slate-200">
+                    <strong>Narration:</strong> ${tx.desc}
+                </div>
+                <div class="grid grid-cols-2 gap-8 pt-8 text-center text-xs text-slate-500">
+                    <div class="border-t border-slate-300 pt-1">Prepared By (${currentUser ? currentUser.name : 'Accountant'})</div>
+                    <div class="border-t border-slate-300 pt-1">Authorized Auditor</div>
+                </div>
+            `;
+            document.getElementById('voucher-modal').classList.remove('hidden');
+            document.getElementById('voucher-modal').classList.add('flex');
+        }
+
+        function closeVoucherModal() {
+            document.getElementById('voucher-modal').classList.add('hidden');
+            document.getElementById('voucher-modal').classList.remove('flex');
+        }
+
+        let pendingDeleteAction = null;
+        function openDeleteModal(title, message, onConfirm) {
+            document.getElementById('delete-modal-title').innerText = title;
+            document.getElementById('delete-modal-message').innerText = message;
+            pendingDeleteAction = onConfirm;
+            document.getElementById('delete-modal').classList.remove('hidden');
+            document.getElementById('delete-modal').classList.add('flex');
+        }
+
+        function closeDeleteModal() {
+            pendingDeleteAction = null;
+            document.getElementById('delete-modal').classList.add('hidden');
+            document.getElementById('delete-modal').classList.remove('flex');
+        }
+
+        document.getElementById('confirm-delete-btn').addEventListener('click', () => {
+            if (typeof pendingDeleteAction === 'function') {
+                pendingDeleteAction();
+            }
+            closeDeleteModal();
+        });
+
+        function requestDeleteTransaction(id) {
+            const tx = transactions.find(t => t.id === id);
+            if (!tx) return;
+            openDeleteModal(
+                `Delete Voucher ${tx.ref}?`,
+                `Are you sure you want to delete voucher ${tx.ref} (${tx.desc}) of ${formatBDT(tx.amount)}? All financial statements and GL balances will recalculate automatically.`,
+                () => {
+                    transactions = transactions.filter(t => t.id !== id);
+                    saveState();
+                    showToast(`Deleted transaction ${tx.ref}.`);
+                }
+            );
+        }
+
+        function renderAll() {
+            renderDashboardAndJournal();
+            renderLedger();
+            renderTrialBalance();
+            renderFinancialStatements();
+            renderCOA();
+            renderUsersTable();
+        }
+
+        window.onload = function () {
+            loadState();
+            refreshSearchableDropdowns();
+            if (currentUser) {
+                enterERPScreen();
+            } else {
+                renderAll();
+            }
+        };
+    </script>
+</body>
+</html>
