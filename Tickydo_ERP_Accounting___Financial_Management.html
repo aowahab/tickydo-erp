@@ -8,8 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Font Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Font IBM Plex Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -60,6 +60,308 @@
                 height: auto !important;
                 overflow: visible !important;
                 background: white !important;
+            }
+        }
+        :root {
+            --erp-blue: #0a6ed1;
+            --erp-blue-soft: #eaf3fc;
+            --erp-ink: #1d2d3e;
+            --erp-muted: #5b738b;
+            --erp-line: #d9e0e7;
+            --erp-canvas: #f5f7f9;
+        }
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--erp-ink);
+        }
+        #erp-screen {
+            background: var(--erp-canvas);
+        }
+        #erp-screen > aside {
+            width: 252px;
+            flex-basis: 252px;
+            background: #fff;
+            color: var(--erp-ink);
+            border-right: 1px solid var(--erp-line);
+        }
+        #erp-screen > aside > div:first-child {
+            display: flex;
+            min-height: 0;
+            flex: 1;
+            flex-direction: column;
+        }
+        #erp-screen > aside .border-b {
+            min-height: 66px;
+            padding: 12px 16px;
+            border-color: var(--erp-line);
+        }
+        #erp-screen > aside .border-b .inline-flex {
+            padding: 0;
+            box-shadow: none;
+        }
+        #erp-screen > aside .border-b .inline-flex > div > div:last-child {
+            color: var(--erp-muted);
+        }
+        #erp-screen > aside .border-b > span {
+            color: var(--erp-blue);
+            background: var(--erp-blue-soft);
+            border-color: #b8d7f4;
+        }
+        #erp-screen > aside nav {
+            flex: 1;
+            padding: 14px 10px;
+            overflow-y: auto;
+        }
+        .nav-section-label {
+            padding: 14px 12px 5px;
+            color: #718496;
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+        #erp-screen > aside nav button {
+            min-height: 38px;
+            border-radius: 4px;
+            color: #334a5f;
+            box-shadow: none;
+            text-align: left;
+        }
+        #erp-screen > aside nav button:hover {
+            background: #f2f6fa;
+            color: var(--erp-blue);
+        }
+        #erp-screen > aside nav button.nav-active {
+            position: relative;
+            color: var(--erp-blue);
+            background: var(--erp-blue-soft);
+            box-shadow: none;
+            font-weight: 600;
+        }
+        #erp-screen > aside nav button.nav-active::before {
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            left: 0;
+            width: 3px;
+            border-radius: 0 2px 2px 0;
+            background: var(--erp-blue);
+            content: '';
+        }
+        #erp-screen > aside nav button i {
+            width: 24px;
+            color: inherit;
+        }
+        #super-admin-nav-wrapper:not(.hidden) {
+            border-color: var(--erp-line);
+        }
+        #super-admin-nav-wrapper > div {
+            color: #9a5d00;
+        }
+        #super-admin-nav-wrapper button {
+            color: #6a4b18;
+        }
+        #erp-screen > aside > div:last-child {
+            padding: 14px 16px;
+            color: var(--erp-muted);
+            background: #fff;
+            border-color: var(--erp-line);
+        }
+        #erp-screen > aside > div:last-child .text-white {
+            color: var(--erp-ink);
+        }
+        #erp-screen > aside > div:last-child .text-emerald-400 {
+            color: #107e3e;
+        }
+        #erp-screen header {
+            height: 60px;
+            padding: 0 22px;
+            border-color: var(--erp-line);
+            box-shadow: 0 1px 2px rgb(29 45 62 / 4%);
+        }
+        #page-title {
+            color: var(--erp-ink);
+            font-size: 17px;
+            font-weight: 600;
+        }
+        #role-badge {
+            color: #475e75;
+            background: #f2f6fa;
+            border-color: #d9e0e7;
+            font-weight: 500;
+        }
+        #erp-screen header button,
+        #erp-screen main button {
+            min-height: 34px;
+            border-radius: 4px;
+            box-shadow: none;
+        }
+        #erp-screen main {
+            padding: 22px 24px 32px;
+            background: var(--erp-canvas);
+        }
+        #erp-screen main .rounded-xl,
+        #erp-screen main .rounded-2xl {
+            border-radius: 6px;
+        }
+        #erp-screen main .shadow-sm,
+        #erp-screen main .shadow-xl {
+            box-shadow: 0 1px 3px rgb(29 45 62 / 6%);
+        }
+        #erp-screen main .border-slate-200 {
+            border-color: var(--erp-line);
+        }
+        #erp-screen main input,
+        #erp-screen main select {
+            min-height: 36px;
+            border-radius: 4px;
+            border-color: #a9b8c6;
+        }
+        #erp-screen main input:focus,
+        #erp-screen main select:focus {
+            border-color: var(--erp-blue);
+            outline: 2px solid rgb(10 110 209 / 18%);
+            outline-offset: 0;
+            box-shadow: none;
+        }
+        #erp-screen main table thead {
+            background: #f2f4f7;
+        }
+        #erp-screen main table th {
+            color: #475e75;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0;
+        }
+        #erp-screen main table td {
+            border-color: #e7ebef;
+        }
+        #erp-screen main .bg-tickydo-navy,
+        #erp-screen main .bg-\[\#094074\] {
+            background-color: var(--erp-blue);
+        }
+        #erp-screen main .hover\:bg-tickydo-navy-dark:hover {
+            background-color: #085caf;
+        }
+        #erp-screen main .text-tickydo-navy,
+        #erp-screen main .text-\[\#094074\] {
+            color: var(--erp-blue);
+        }
+        #erp-screen main .border-tickydo-navy {
+            border-color: var(--erp-blue);
+        }
+        #cloud-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #107e3e;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        #cloud-status[data-state="error"] {
+            color: #bb0000;
+        }
+        #cloud-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+        @media (max-width: 767px) {
+            #erp-screen {
+                height: 100dvh;
+                flex-direction: column;
+            }
+            #erp-screen > aside {
+                width: 100%;
+                flex: 0 0 auto;
+                border-right: 0;
+                border-bottom: 1px solid var(--erp-line);
+            }
+            #erp-screen > aside > div:first-child {
+                flex-direction: row;
+                align-items: center;
+                min-height: 58px;
+            }
+            #erp-screen > aside .border-b {
+                min-height: 58px;
+                flex: 0 0 auto;
+                border-bottom: 0;
+            }
+            #erp-screen > aside .border-b svg {
+                width: 26px;
+                height: 26px;
+            }
+            #erp-screen > aside .border-b .inline-flex > div > div:last-child,
+            #erp-screen > aside .border-b > span,
+            #erp-screen > aside > div:last-child,
+            .nav-section-label {
+                display: none;
+            }
+            #erp-screen > aside nav {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                padding: 8px 10px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                white-space: nowrap;
+            }
+            #erp-screen > aside nav button {
+                width: auto;
+                flex: 0 0 auto;
+                padding: 8px 11px;
+                font-size: 12px;
+            }
+            #super-admin-nav-wrapper:not(.hidden) {
+                display: contents;
+                padding: 0;
+                margin: 0;
+                border: 0;
+            }
+            #erp-screen > div.flex-1 {
+                min-height: 0;
+            }
+            #erp-screen header {
+                height: auto;
+                min-height: 58px;
+                gap: 8px;
+                padding: 8px 12px;
+            }
+            #role-badge,
+            #cloud-status-label,
+            #erp-screen header button .hidden.sm\:inline {
+                display: none;
+            }
+            #erp-screen header button {
+                min-width: 36px;
+                justify-content: center;
+                padding: 8px 10px;
+            }
+            #erp-screen main {
+                padding: 14px 12px 24px;
+            }
+            #view-dashboard > .grid {
+                gap: 10px;
+            }
+            #view-dashboard > .grid > div {
+                padding: 14px;
+            }
+            #view-dashboard > .grid > div p:nth-child(2) {
+                font-size: 22px;
+            }
+            #erp-screen main .overflow-x-auto {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+        @media print {
+            #erp-screen > aside,
+            #erp-screen header {
+                display: none !important;
+            }
+            #erp-screen main {
+                padding: 0 !important;
             }
         }
     </style>
@@ -249,6 +551,7 @@
 
                 <!-- Nav Menu (NO RESET BUTTON ANYWHERE) -->
                 <nav class="p-3 space-y-1 overflow-y-auto">
+                    <div class="nav-section-label">Workspace</div>
                     <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg transition nav-active">
                         <i class="fa-solid fa-chart-pie w-6 text-left"></i> Dashboard
                     </button>
@@ -258,19 +561,22 @@
                     <button onclick="switchTab('ledger')" id="nav-ledger" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 transition">
                         <i class="fa-solid fa-folder-open w-6 text-left"></i> General Ledger (GL)
                     </button>
+                    <div class="nav-section-label">Financial Reports</div>
                     <button onclick="switchTab('trial')" id="nav-trial" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 transition">
                         <i class="fa-solid fa-scale-balanced w-6 text-left"></i> Trial Balance (TB)
                     </button>
                     <button onclick="switchTab('statements')" id="nav-statements" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 transition">
                         <i class="fa-solid fa-file-invoice-dollar w-6 text-left"></i> Financial Statements
                     </button>
+                    <div class="nav-section-label">Master Data</div>
                     <button onclick="switchTab('coa')" id="nav-coa" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 transition">
                         <i class="fa-solid fa-list-ol w-6 text-left"></i> Chart of Accounts
                     </button>
 
                     <!-- SUPER ADMIN EXCLUSIVE NAV -->
                     <div id="super-admin-nav-wrapper" class="pt-3 mt-3 border-t border-white/10 hidden">
-                        <div class="px-3 pb-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
+                        <div class="nav-section-label">Administration</div>
+                        <div class="hidden px-3 pb-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-300 items-center gap-1.5">
                             <i class="fa-solid fa-shield-halved"></i> Super Admin Only
                         </div>
                         <button onclick="switchTab('users')" id="nav-users" class="w-full flex items-center px-3.5 py-2.5 text-xs sm:text-sm font-medium rounded-lg hover:bg-white/10 text-amber-200 transition">
@@ -300,6 +606,9 @@
             <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0 no-print">
                 <div class="flex items-center gap-3">
                     <h1 id="page-title" class="text-base sm:text-lg font-bold text-slate-800">Financial Overview (BDT ৳)</h1>
+                    <span id="cloud-status" data-state="checking" aria-live="polite">
+                        <span id="cloud-status-dot"></span><span id="cloud-status-label">Checking cloud</span>
+                    </span>
                     <span id="role-badge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300">
                         Super Admin
                     </span>
@@ -686,7 +995,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">First Password</label>
-                                <input type="text" id="new-user-pass" placeholder="Set initial password" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-mono">
+                                <input type="password" id="new-user-pass" placeholder="4-digit password" minlength="4" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-mono">
                             </div>
                             <div class="flex items-end">
                                 <button type="submit" class="w-full bg-tickydo-navy hover:bg-tickydo-navy-dark text-white font-semibold py-2 px-4 rounded-lg text-sm shadow-sm transition">
@@ -698,7 +1007,7 @@
 
                     <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                         <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center">
-                            <h3 class="font-bold text-slate-800">Registered Users & Credentials</h3>
+                            <h3 class="font-bold text-slate-800">Registered Users</h3>
                             <span id="user-count-badge" class="text-xs font-semibold bg-blue-50 text-blue-800 px-2.5 py-1 rounded-full">1 User</span>
                         </div>
                         <div class="overflow-x-auto">
@@ -708,7 +1017,7 @@
                                         <th class="py-3 px-6">Full Name</th>
                                         <th class="py-3 px-6">Designation / Role</th>
                                         <th class="py-3 px-6">Phone Number</th>
-                                        <th class="py-3 px-6">Password (Editable)</th>
+                                        <th class="py-3 px-6">Password Management</th>
                                         <th class="py-3 px-6 text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -821,14 +1130,6 @@
     <!-- APPLICATION SCRIPT                         -->
     <!-- ========================================== -->
     <script>
-        const SUPER_ADMIN_PHONE = '01911935220';
-        const SUPER_ADMIN_PASS  = 'super1234';
-
-        // Primary localStorage keys (preserving both tickydo_* and tickydo_erp_* for 100% backward compatibility)
-        const KEY_USERS = 'tickydo_users';
-        const KEY_ACCOUNTS = 'tickydo_accounts';
-        const KEY_TX = 'tickydo_transactions';
-
         // IFRS 18 & IAS 1 Sub-Category Options
         const SUBCATEGORY_OPTIONS = [
             // IAS 1 / IFRS 18 Statement of Financial Position
@@ -855,51 +1156,18 @@
             { value: 'Expense', label: 'Expense / Tax (Debit Normal)' }
         ];
 
-        const defaultUsers = [
-            {
-                id: 'usr_super',
-                name: 'Super Admin',
-                role: 'Super Admin',
-                phone: SUPER_ADMIN_PHONE,
-                password: SUPER_ADMIN_PASS,
-                isSuper: true
-            }
-        ];
-
-        const defaultAccounts = [
-            { id: 'acc_101', folio: 'TF-101', name: 'Cash in Hand', type: 'Asset', subCategory: 'Current Assets' },
-            { id: 'acc_102', folio: 'TF-102', name: 'Commercial Bank Account (BDT)', type: 'Asset', subCategory: 'Current Assets' },
-            { id: 'acc_103', folio: 'TF-103', name: 'Mobile Financial Services Wallet', type: 'Asset', subCategory: 'Current Assets' },
-            { id: 'acc_104', folio: 'TF-104', name: 'Accounts Receivable', type: 'Asset', subCategory: 'Current Assets' },
-            { id: 'acc_105', folio: 'TF-105', name: 'Office & IT Equipment', type: 'Asset', subCategory: 'Non-Current Assets' },
-            { id: 'acc_201', folio: 'TF-201', name: 'Accounts Payable', type: 'Liability', subCategory: 'Current Liabilities' },
-            { id: 'acc_202', folio: 'TF-202', name: 'Long-Term Bank Loan', type: 'Liability', subCategory: 'Non-Current Liabilities' },
-            { id: 'acc_301', folio: 'TF-301', name: 'Owner\'s Equity / Share Capital', type: 'Equity', subCategory: 'Equity' },
-            { id: 'acc_401', folio: 'TF-401', name: 'Operational Service Revenue', type: 'Revenue', subCategory: 'Operating Revenue' },
-            { id: 'acc_402', folio: 'TF-402', name: 'Commission & Advisory Income', type: 'Revenue', subCategory: 'Operating Revenue' },
-            { id: 'acc_403', folio: 'TF-403', name: 'Investment & Dividend Income', type: 'Revenue', subCategory: 'Investing Income' },
-            { id: 'acc_501', folio: 'TF-501', name: 'Cloud Server & Software Licensing', type: 'Expense', subCategory: 'Operating Expense' },
-            { id: 'acc_502', folio: 'TF-502', name: 'Office Rent & Utilities', type: 'Expense', subCategory: 'Operating Expense' },
-            { id: 'acc_503', folio: 'TF-503', name: 'Salaries & Professional Fees', type: 'Expense', subCategory: 'Operating Expense' },
-            { id: 'acc_504', folio: 'TF-504', name: 'Interest on Bank Borrowings', type: 'Expense', subCategory: 'Financing Expense' },
-            { id: 'acc_505', folio: 'TF-505', name: 'Corporate Income Tax Expense', type: 'Expense', subCategory: 'Income Taxes' }
-        ];
-
-        const defaultTransactions = [
-            { id: 'tx_101', date: '2026-10-01', ref: 'TV-1001', branch: 'Head Office', debitId: 'acc_102', creditId: 'acc_301', amount: 1500000, desc: 'Initial corporate capital deposit into commercial bank account' },
-            { id: 'tx_102', date: '2026-10-05', ref: 'TV-1002', branch: 'Corporate HQ', debitId: 'acc_105', creditId: 'acc_102', amount: 185000, desc: 'Acquisition of workstations and accounting hardware' },
-            { id: 'tx_103', date: '2026-10-12', ref: 'TV-1003', branch: 'Dhaka Division', debitId: 'acc_101', creditId: 'acc_401', amount: 450000, desc: 'Cash collection from operational service delivery' },
-            { id: 'tx_104', date: '2026-10-18', ref: 'TV-1004', branch: 'Online Portal', debitId: 'acc_103', creditId: 'acc_402', amount: 125000, desc: 'Advisory and digital service commission received via MFS wallet' },
-            { id: 'tx_105', date: '2026-10-22', ref: 'TV-1005', branch: 'Head Office', debitId: 'acc_501', creditId: 'acc_102', amount: 35000, desc: 'Monthly cloud hosting and database infrastructure billing' },
-            { id: 'tx_106', date: '2026-10-26', ref: 'TV-1006', branch: 'Head Office', debitId: 'acc_502', creditId: 'acc_101', amount: 55000, desc: 'Office premises rent and electricity settlement' },
-            { id: 'tx_107', date: '2026-10-28', ref: 'TV-1007', branch: 'Head Office', debitId: 'acc_503', creditId: 'acc_102', amount: 195000, desc: 'Monthly staff salaries and professional honorarium disbursement' }
-        ];
-
         let users = [];
         let accounts = [];
         let transactions = [];
         let currentUser = null;
         let currentLang = 'en';
+        let stateRevision = 0;
+
+        function escapeHTML(value) {
+            return String(value ?? '').replace(/[&<>"']/g, character => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[character]);
+        }
 
         // Searchable Dropdown State Registry
         const sddRegistry = {};
@@ -943,7 +1211,7 @@
             container.innerHTML = `
                 <div class="relative w-full text-xs" data-sdd="${containerId}">
                     <button type="button" onclick="toggleSDD('${containerId}', event)" class="w-full flex items-center justify-between border border-slate-300 bg-white hover:border-slate-400 rounded-lg px-3 py-2 text-left text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-[#094074] transition">
-                        <span class="truncate pr-2">${displayLabel}</span>
+                        <span class="truncate pr-2">${escapeHTML(displayLabel)}</span>
                         <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 shrink-0"></i>
                     </button>
                     <div id="${containerId}-menu" class="hidden absolute left-0 right-0 mt-1 bg-white border border-slate-200 rounded-xl shadow-2xl z-50 overflow-hidden">
@@ -978,7 +1246,7 @@
                 const isSelected = String(o.value) === String(state.selectedValue);
                 return `
                     <button type="button" onclick="selectSDDOption('${containerId}', '${String(o.value).replace(/'/g, "\\'")}', event)" class="w-full text-left px-3 py-2 hover:bg-blue-50 transition flex items-center justify-between ${isSelected ? 'bg-blue-50/80 font-bold text-[#094074]' : 'text-slate-700'}">
-                        <span class="truncate">${o.label}</span>
+                        <span class="truncate">${escapeHTML(o.label)}</span>
                         ${isSelected ? '<i class="fa-solid fa-check text-[#094074] text-[10px] ml-2"></i>' : ''}
                     </button>
                 `;
@@ -1067,83 +1335,98 @@
             return 'Current Assets';
         }
 
-        function loadState() {
+        async function apiRequest(path, options = {}) {
+            const requestOptions = { ...options, credentials: 'same-origin', headers: { ...options.headers } };
+            if (requestOptions.body && typeof requestOptions.body !== 'string') {
+                requestOptions.headers['Content-Type'] = 'application/json';
+                requestOptions.body = JSON.stringify(requestOptions.body);
+            }
+            const response = await fetch(path, requestOptions);
+            if (response.status === 204) return null;
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(payload.error || 'The server request failed.');
+            return payload;
+        }
+
+        function applyServerState(state) {
+            currentUser = state.currentUser;
+            users = state.users;
+            accounts = state.accounts;
+            transactions = state.transactions.map(tx => ({ ...tx, amount: Number(tx.amount) }));
+            stateRevision = state.revision;
+        }
+
+        function setCloudStatus(state, message) {
+            const indicator = document.getElementById('cloud-status');
+            const label = document.getElementById('cloud-status-label');
+            if (!indicator || !label) return;
+            indicator.dataset.state = state;
+            label.textContent = message;
+        }
+
+        async function checkCloudStatus() {
             try {
-                // Merge or load Users from either key so no user is ever lost
-                const rawUsersPrimary = JSON.parse(localStorage.getItem(KEY_USERS) || 'null');
-                const rawUsersLegacy = JSON.parse(localStorage.getItem('tickydo_erp_users') || 'null');
-                users = Array.isArray(rawUsersPrimary) && rawUsersPrimary.length
-                    ? rawUsersPrimary
-                    : (Array.isArray(rawUsersLegacy) && rawUsersLegacy.length ? rawUsersLegacy : [...defaultUsers]);
-
-                const superIdx = users.findIndex(u => u.phone === SUPER_ADMIN_PHONE);
-                if (superIdx === -1) {
-                    users.unshift(defaultUsers[0]);
-                } else {
-                    users[superIdx].password = SUPER_ADMIN_PASS;
-                    users[superIdx].isSuper = true;
-                    users[superIdx].role = 'Super Admin';
-                }
-
-                // Merge or load Accounts from either key and auto-upgrade with IFRS 18 / IAS 1 subCategory
-                const rawAccPrimary = JSON.parse(localStorage.getItem(KEY_ACCOUNTS) || 'null');
-                const rawAccLegacy = JSON.parse(localStorage.getItem('tickydo_erp_accounts') || 'null');
-                const baseAccounts = Array.isArray(rawAccPrimary) && rawAccPrimary.length
-                    ? rawAccPrimary
-                    : (Array.isArray(rawAccLegacy) && rawAccLegacy.length ? rawAccLegacy : [...defaultAccounts]);
-
-                accounts = baseAccounts.map(acc => ({
-                    ...acc,
-                    subCategory: inferDefaultSubCategory(acc)
-                }));
-
-                // Merge or load Transactions from either key
-                const rawTxPrimary = JSON.parse(localStorage.getItem(KEY_TX) || 'null');
-                const rawTxLegacy = JSON.parse(localStorage.getItem('tickydo_erp_transactions') || 'null');
-                transactions = Array.isArray(rawTxPrimary)
-                    ? rawTxPrimary
-                    : (Array.isArray(rawTxLegacy) ? rawTxLegacy : [...defaultTransactions]);
-
-                // Sync both storage key sets immediately
-                persistToLocalStorage();
-
-                const savedSession = JSON.parse(sessionStorage.getItem('tickydo_erp_session') || 'null');
-                if (savedSession) {
-                    const verified = users.find(u => u.phone === savedSession.phone);
-                    if (verified) currentUser = verified;
-                }
-            } catch (e) {
-                console.error('State load fallback:', e);
-                users = [...defaultUsers];
-                accounts = [...defaultAccounts];
-                transactions = [...defaultTransactions];
+                const response = await fetch('/health', { cache: 'no-store' });
+                if (!response.ok) throw new Error('Cloud service unavailable');
+                setCloudStatus('connected', 'Cloud connected');
+            } catch {
+                setCloudStatus('error', 'Cloud unavailable');
             }
         }
 
-        function persistToLocalStorage() {
-            try {
-                // Save to both 'tickydo_*' and 'tickydo_erp_*' keys so any version retains all data
-                localStorage.setItem(KEY_USERS, JSON.stringify(users));
-                localStorage.setItem('tickydo_erp_users', JSON.stringify(users));
-
-                localStorage.setItem(KEY_ACCOUNTS, JSON.stringify(accounts));
-                localStorage.setItem('tickydo_erp_accounts', JSON.stringify(accounts));
-
-                localStorage.setItem(KEY_TX, JSON.stringify(transactions));
-                localStorage.setItem('tickydo_erp_transactions', JSON.stringify(transactions));
-            } catch (e) {
-                console.error('Storage save warning:', e);
-            }
-        }
-
-        function saveState() {
-            persistToLocalStorage();
+        async function refreshServerState() {
+            applyServerState(await apiRequest('/api/state'));
+            setCloudStatus('connected', 'Cloud connected');
             refreshSearchableDropdowns();
             renderAll();
         }
 
+        async function loadState() {
+            try {
+                const sessionState = await apiRequest('/api/auth/session');
+                currentUser = sessionState.user;
+                if (currentUser) {
+                    await refreshServerState();
+                    enterERPScreen();
+                } else {
+                    users = [];
+                    accounts = [];
+                    transactions = [];
+                    renderAll();
+                }
+            } catch (error) {
+                currentUser = null;
+                users = [];
+                accounts = [];
+                transactions = [];
+                renderAll();
+                showToast(`Could not connect to the server: ${error.message}`, 'error');
+            }
+        }
+
+        async function saveState() {
+            refreshSearchableDropdowns();
+            renderAll();
+            try {
+                const result = await apiRequest('/api/state', {
+                    method: 'PUT',
+                    body: { accounts, transactions, revision: stateRevision }
+                });
+                stateRevision = result.revision;
+                setCloudStatus('connected', 'All changes saved');
+            } catch (error) {
+                setCloudStatus('error', 'Save needs attention');
+                showToast(`Save failed: ${error.message}`, 'error');
+                try {
+                    await refreshServerState();
+                } catch (refreshError) {
+                    console.error('State refresh failed:', refreshError);
+                }
+            }
+        }
+
         function isSuperAdminUser() {
-            return Boolean(currentUser && (currentUser.isSuper || currentUser.role === 'Super Admin' || currentUser.phone === SUPER_ADMIN_PHONE));
+            return Boolean(currentUser && currentUser.isSuper === true);
         }
 
         function showToast(message, type = 'success') {
@@ -1152,7 +1435,11 @@
             const bg = type === 'error' ? 'bg-rose-600' : 'bg-[#094074]';
             const icon = type === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check';
             toast.className = `${bg} text-white px-4 py-3 rounded-xl shadow-lg text-xs font-semibold flex items-center gap-2.5 pointer-events-auto transition-all duration-300`;
-            toast.innerHTML = `<i class="fa-solid ${icon} text-sm"></i> <span>${message}</span>`;
+            const toastIcon = document.createElement('i');
+            toastIcon.className = `fa-solid ${icon} text-sm`;
+            const toastMessage = document.createElement('span');
+            toastMessage.textContent = message;
+            toast.append(toastIcon, toastMessage);
             container.appendChild(toast);
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-y-2');
@@ -1226,23 +1513,25 @@
         // ==========================================
         // AUTHENTICATION & USER MANAGEMENT
         // ==========================================
-        function handleLogin(e) {
+        async function handleLogin(e) {
             e.preventDefault();
             const phone = document.getElementById('login-phone').value.trim();
             const pass = document.getElementById('login-password').value;
             const errBox = document.getElementById('login-error');
-
-            const matchedUser = users.find(u => u.phone === phone && u.password === pass);
-            if (!matchedUser) {
+            try {
+                const result = await apiRequest('/api/auth/login', {
+                    method: 'POST',
+                    body: { phone, password: pass }
+                });
+                currentUser = result.user;
+                errBox.classList.add('hidden');
+                await refreshServerState();
+                enterERPScreen();
+                showToast(`Signed in as ${currentUser.name} (${currentUser.role})`);
+            } catch (error) {
+                console.error('Sign-in failed:', error);
                 errBox.classList.remove('hidden');
-                return;
             }
-
-            errBox.classList.add('hidden');
-            currentUser = matchedUser;
-            sessionStorage.setItem('tickydo_erp_session', JSON.stringify(currentUser));
-            enterERPScreen();
-            showToast(`Signed in as ${currentUser.name} (${currentUser.role})`);
         }
 
         function enterERPScreen() {
@@ -1267,16 +1556,21 @@
             switchTab('dashboard');
         }
 
-        function handleLogout() {
+        async function handleLogout() {
+            try {
+                await apiRequest('/api/auth/logout', { method: 'POST' });
+            } catch (error) {
+                showToast(`Sign out failed: ${error.message}`, 'error');
+                return;
+            }
             currentUser = null;
-            sessionStorage.removeItem('tickydo_erp_session');
             document.getElementById('login-password').value = '';
             document.getElementById('erp-screen').classList.add('hidden');
             document.getElementById('auth-screen').classList.remove('hidden');
             showToast('Signed out successfully.');
         }
 
-        function handleAddPerson(e) {
+        async function handleAddPerson(e) {
             e.preventDefault();
             if (!isSuperAdminUser()) {
                 showToast('Only Super Admin can add users.', 'error');
@@ -1288,45 +1582,48 @@
             const role = document.getElementById('new-user-role').value;
             const password = document.getElementById('new-user-pass').value.trim();
 
-            if (users.some(u => u.phone === phone)) {
-                showToast('This phone number is already registered!', 'error');
-                return;
+            try {
+                await apiRequest('/api/users', {
+                    method: 'POST',
+                    body: { name, phone, role, password }
+                });
+                e.target.reset();
+                await refreshServerState();
+                showToast(`Registered ${name} (${phone}) successfully!`);
+            } catch (error) {
+                showToast(error.message, 'error');
             }
-
-            users.push({
-                id: 'usr_' + Date.now(),
-                name,
-                role,
-                phone,
-                password,
-                isSuper: false
-            });
-
-            e.target.reset();
-            saveState();
-            showToast(`Registered ${name} (${phone}) successfully!`);
         }
 
-        function updatePersonPassword(userId, newPass) {
+        async function updatePersonPassword(userId, newPass) {
             const usr = users.find(u => u.id === userId);
-            if (usr && newPass.trim() !== '') {
-                usr.password = newPass.trim();
-                saveState();
+            if (!usr || newPass.trim() === '') return;
+            try {
+                await apiRequest(`/api/users/${encodeURIComponent(userId)}/password`, {
+                    method: 'PATCH',
+                    body: { password: newPass.trim() }
+                });
                 showToast(`Password updated for ${usr.name}.`);
+            } catch (error) {
+                showToast(error.message, 'error');
             }
         }
 
         function requestDeletePerson(userId) {
             const usr = users.find(u => u.id === userId);
-            if (!usr || usr.isSuper || usr.phone === SUPER_ADMIN_PHONE) return;
+            if (!usr || usr.isSuper) return;
 
             openDeleteModal(
                 'Remove User Access',
                 `Are you sure you want to remove ${usr.name} (${usr.phone}) from Tickydo ERP?`,
-                () => {
-                    users = users.filter(u => u.id !== userId);
-                    saveState();
-                    showToast(`Removed user ${usr.name}.`);
+                async () => {
+                    try {
+                        await apiRequest(`/api/users/${encodeURIComponent(userId)}`, { method: 'DELETE' });
+                        await refreshServerState();
+                        showToast(`Removed user ${usr.name}.`);
+                    } catch (error) {
+                        showToast(error.message, 'error');
+                    }
                 }
             );
         }
@@ -1339,21 +1636,21 @@
             tbody.innerHTML = users.map(u => `
                 <tr class="hover:bg-slate-50">
                     <td class="py-3 px-6 font-semibold text-slate-800 flex items-center gap-2">
-                        ${u.name}
+                        ${escapeHTML(u.name)}
                         ${u.isSuper ? '<span class="text-[10px] bg-amber-100 text-amber-800 border border-amber-300 px-2 py-0.5 rounded-full font-bold">Super Admin</span>' : ''}
                     </td>
-                    <td class="py-3 px-6 text-xs font-medium text-slate-600">${u.role}</td>
-                    <td class="py-3 px-6 font-mono text-xs font-bold text-[#094074]">${u.phone}</td>
+                    <td class="py-3 px-6 text-xs font-medium text-slate-600">${escapeHTML(u.role)}</td>
+                    <td class="py-3 px-6 font-mono text-xs font-bold text-[#094074]">${escapeHTML(u.phone)}</td>
                     <td class="py-3 px-6">
                         ${u.isSuper 
-                            ? `<span class="font-mono text-xs bg-slate-100 px-2.5 py-1 rounded border border-slate-200 text-slate-600">${u.password}</span>`
-                            : `<input type="text" value="${u.password}" onchange="updatePersonPassword('${u.id}', this.value)" class="font-mono text-xs bg-blue-50 border border-blue-200 rounded px-2.5 py-1 w-36 text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#094074]" title="Click to update password">`
+                            ? `<span class="text-xs text-slate-400">Protected</span>`
+                            : `<input type="password" placeholder="4-digit password" minlength="4" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" onchange="updatePersonPassword('${escapeHTML(u.id)}', this.value); this.value = ''" class="font-mono text-xs bg-blue-50 border border-blue-200 rounded px-2.5 py-1 w-36 text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#094074]" title="Set a four-digit password">`
                         }
                     </td>
                     <td class="py-3 px-6 text-center">
                         ${u.isSuper 
                             ? '<span class="text-xs text-slate-400 italic">Protected</span>'
-                            : `<button onclick="requestDeletePerson('${u.id}')" class="px-2.5 py-1 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded text-xs font-semibold transition">
+                            : `<button onclick="requestDeletePerson('${escapeHTML(u.id)}')" class="px-2.5 py-1 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded text-xs font-semibold transition">
                                 <i class="fa-solid fa-user-xmark mr-1"></i> Remove
                                </button>`
                         }
@@ -1598,27 +1895,27 @@
                 const cr = getAccount(tx.creditId);
                 return `
                     <tr class="hover:bg-slate-50 transition">
-                        <td class="py-3 px-4 whitespace-nowrap font-medium text-slate-700">${tx.date}</td>
+                        <td class="py-3 px-4 whitespace-nowrap font-medium text-slate-700">${escapeHTML(tx.date)}</td>
                         <td class="py-3 px-4 whitespace-nowrap">
-                            <div class="font-mono text-xs font-bold text-[#094074]">${tx.ref}</div>
-                            <div class="text-[11px] text-slate-400">${tx.branch || 'Head Office'}</div>
+                            <div class="font-mono text-xs font-bold text-[#094074]">${escapeHTML(tx.ref)}</div>
+                            <div class="text-[11px] text-slate-400">${escapeHTML(tx.branch || 'Head Office')}</div>
                         </td>
                         <td class="py-3 px-4">
-                            <div class="font-semibold text-slate-800">${dr.name} <span class="text-slate-400 font-normal">to</span> ${cr.name}</div>
-                            <div class="text-xs text-slate-500">${tx.desc}</div>
+                            <div class="font-semibold text-slate-800">${escapeHTML(dr.name)} <span class="text-slate-400 font-normal">to</span> ${escapeHTML(cr.name)}</div>
+                            <div class="text-xs text-slate-500">${escapeHTML(tx.desc)}</div>
                         </td>
                         <td class="py-3 px-4 font-mono text-xs whitespace-nowrap font-bold text-[#094074]">
-                            ${dr.folio} / ${cr.folio}
+                            ${escapeHTML(dr.folio)} / ${escapeHTML(cr.folio)}
                         </td>
                         <td class="py-3 px-4 text-right font-bold text-slate-900 whitespace-nowrap">${formatBDT(tx.amount)}</td>
                         <td class="py-3 px-4 text-center whitespace-nowrap">
-                            <button onclick="previewVoucher('${tx.id}')" class="px-2 py-1 rounded bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold mr-1 transition" title="Print Voucher">
+                            <button onclick="previewVoucher('${escapeHTML(tx.id)}')" class="px-2 py-1 rounded bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-semibold mr-1 transition" title="Print Voucher">
                                 <i class="fa-solid fa-print"></i>
                             </button>
-                            <button onclick="editTransaction('${tx.id}')" class="px-2.5 py-1 rounded bg-blue-50 text-[#094074] hover:bg-blue-100 text-xs font-semibold mr-1 transition">
+                            <button onclick="editTransaction('${escapeHTML(tx.id)}')" class="px-2.5 py-1 rounded bg-blue-50 text-[#094074] hover:bg-blue-100 text-xs font-semibold mr-1 transition">
                                 <i class="fa-solid fa-pen-to-square"></i> Edit
                             </button>
-                            <button onclick="requestDeleteTransaction('${tx.id}')" class="px-2.5 py-1 rounded bg-rose-50 text-rose-600 hover:bg-rose-100 text-xs font-semibold transition">
+                            <button onclick="requestDeleteTransaction('${escapeHTML(tx.id)}')" class="px-2.5 py-1 rounded bg-rose-50 text-rose-600 hover:bg-rose-100 text-xs font-semibold transition">
                                 <i class="fa-solid fa-trash"></i> Delete
                             </button>
                         </td>
@@ -1657,33 +1954,33 @@
                 const cr = getAccount(tx.creditId);
                 return `
                     <tr class="bg-white">
-                        <td class="py-2.5 px-4 align-top font-medium text-slate-700 whitespace-nowrap" rowspan="2">${tx.date}</td>
+                        <td class="py-2.5 px-4 align-top font-medium text-slate-700 whitespace-nowrap" rowspan="2">${escapeHTML(tx.date)}</td>
                         <td class="py-2.5 px-4 align-top whitespace-nowrap" rowspan="2">
-                            <div class="font-mono text-xs text-[#094074] font-bold">${tx.ref}</div>
-                            <div class="text-[11px] text-slate-400">${tx.branch || 'Head Office'}</div>
+                            <div class="font-mono text-xs text-[#094074] font-bold">${escapeHTML(tx.ref)}</div>
+                            <div class="text-[11px] text-slate-400">${escapeHTML(tx.branch || 'Head Office')}</div>
                         </td>
-                        <td class="py-2.5 px-4 font-semibold text-slate-800">${dr.name} <span class="text-xs font-normal text-emerald-700">(Dr.)</span></td>
-                        <td class="py-2.5 px-4 text-center font-mono text-xs font-bold text-[#094074]">${dr.folio}</td>
+                        <td class="py-2.5 px-4 font-semibold text-slate-800">${escapeHTML(dr.name)} <span class="text-xs font-normal text-emerald-700">(Dr.)</span></td>
+                        <td class="py-2.5 px-4 text-center font-mono text-xs font-bold text-[#094074]">${escapeHTML(dr.folio)}</td>
                         <td class="py-2.5 px-4 text-right font-bold text-emerald-700 whitespace-nowrap">${formatBDT(tx.amount)}</td>
                         <td class="py-2.5 px-4 text-right text-slate-300">-</td>
                         <td class="py-2.5 px-4 text-center align-middle whitespace-nowrap" rowspan="2">
-                            <button onclick="previewVoucher('${tx.id}')" class="px-2 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded text-xs font-semibold mr-1 transition" title="Print Voucher">
+                            <button onclick="previewVoucher('${escapeHTML(tx.id)}')" class="px-2 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded text-xs font-semibold mr-1 transition" title="Print Voucher">
                                 <i class="fa-solid fa-print"></i>
                             </button>
-                            <button onclick="editTransaction('${tx.id}')" class="px-2.5 py-1 bg-blue-50 text-[#094074] hover:bg-blue-100 rounded text-xs font-semibold mr-1 transition">
+                            <button onclick="editTransaction('${escapeHTML(tx.id)}')" class="px-2.5 py-1 bg-blue-50 text-[#094074] hover:bg-blue-100 rounded text-xs font-semibold mr-1 transition">
                                 <i class="fa-solid fa-pen"></i> Edit
                             </button>
-                            <button onclick="requestDeleteTransaction('${tx.id}')" class="px-2.5 py-1 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded text-xs font-semibold transition">
+                            <button onclick="requestDeleteTransaction('${escapeHTML(tx.id)}')" class="px-2.5 py-1 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded text-xs font-semibold transition">
                                 <i class="fa-solid fa-trash"></i> Delete
                             </button>
                         </td>
                     </tr>
                     <tr class="border-b border-slate-200 bg-slate-50/50">
                         <td class="py-2.5 px-4 pl-10 text-slate-700">
-                            <div class="font-medium">To ${cr.name} <span class="text-xs font-normal text-rose-700">(Cr.)</span></div>
-                            <div class="text-xs italic text-slate-500 mt-0.5">(${tx.desc})</div>
+                            <div class="font-medium">To ${escapeHTML(cr.name)} <span class="text-xs font-normal text-rose-700">(Cr.)</span></div>
+                            <div class="text-xs italic text-slate-500 mt-0.5">(${escapeHTML(tx.desc)})</div>
                         </td>
-                        <td class="py-2.5 px-4 text-center font-mono text-xs font-bold text-[#094074]">${cr.folio}</td>
+                        <td class="py-2.5 px-4 text-center font-mono text-xs font-bold text-[#094074]">${escapeHTML(cr.folio)}</td>
                         <td class="py-2.5 px-4 text-right text-slate-300">-</td>
                         <td class="py-2.5 px-4 text-right font-bold text-rose-700 whitespace-nowrap">${formatBDT(tx.amount)}</td>
                     </tr>
@@ -1802,9 +2099,9 @@
                 const balType = netBal >= 0 ? 'Dr' : 'Cr';
                 headerEl.innerHTML = `
                     <div class="flex items-center gap-2">
-                        <span class="text-xs uppercase font-bold text-white bg-tickydo-navy px-2.5 py-1 rounded">${acc.folio}</span>
-                        <span class="font-bold text-slate-800">${acc.name}</span>
-                        <span class="text-xs text-slate-500">(${acc.subCategory})</span>
+                        <span class="text-xs uppercase font-bold text-white bg-tickydo-navy px-2.5 py-1 rounded">${escapeHTML(acc.folio)}</span>
+                        <span class="font-bold text-slate-800">${escapeHTML(acc.name)}</span>
+                        <span class="text-xs text-slate-500">(${escapeHTML(acc.subCategory)})</span>
                     </div>
                     <div class="text-sm font-bold">
                         Closing Balance: <span class="text-[#094074] text-base">${formatBDT(Math.abs(netBal))} (${balType})</span>
@@ -1817,14 +2114,14 @@
                 const balType = row.runningBalance >= 0 ? 'Dr' : 'Cr';
                 return `
                     <tr class="hover:bg-slate-50 transition">
-                        <td class="py-3 px-4 whitespace-nowrap text-xs font-medium">${row.date}</td>
-                        <td class="py-3 px-4 font-mono text-xs font-bold text-[#094074] whitespace-nowrap">${row.ref}</td>
-                        <td class="py-3 px-4 font-mono text-xs font-bold text-[#094074] whitespace-nowrap">${row.accountCode}</td>
-                        <td class="py-3 px-4 font-semibold text-slate-800">${row.accountName}</td>
-                        <td class="py-3 px-4 text-xs text-slate-600">${row.contraCode} — ${row.contraName}</td>
+                        <td class="py-3 px-4 whitespace-nowrap text-xs font-medium">${escapeHTML(row.date)}</td>
+                        <td class="py-3 px-4 font-mono text-xs font-bold text-[#094074] whitespace-nowrap">${escapeHTML(row.ref)}</td>
+                        <td class="py-3 px-4 font-mono text-xs font-bold text-[#094074] whitespace-nowrap">${escapeHTML(row.accountCode)}</td>
+                        <td class="py-3 px-4 font-semibold text-slate-800">${escapeHTML(row.accountName)}</td>
+                        <td class="py-3 px-4 text-xs text-slate-600">${escapeHTML(row.contraCode)} — ${escapeHTML(row.contraName)}</td>
                         <td class="py-3 px-4 text-right font-bold text-emerald-700 whitespace-nowrap">${row.debit > 0 ? formatBDT(row.debit) : '-'}</td>
                         <td class="py-3 px-4 text-right font-bold text-rose-700 whitespace-nowrap">${row.credit > 0 ? formatBDT(row.credit) : '-'}</td>
-                        <td class="py-3 px-4 text-xs text-slate-600 max-w-xs">${row.narration}</td>
+                        <td class="py-3 px-4 text-xs text-slate-600 max-w-xs">${escapeHTML(row.narration)}</td>
                         <td class="py-3 px-4 text-right font-extrabold text-slate-900 whitespace-nowrap">
                             ${formatBDT(Math.abs(row.runningBalance))} <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${balType === 'Dr' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}">${balType}</span>
                         </td>
@@ -1902,10 +2199,10 @@
 
                 return `
                     <tr class="hover:bg-slate-50 transition">
-                        <td class="py-3 px-6 font-mono text-xs font-bold text-[#094074]">${acc.folio}</td>
-                        <td class="py-3 px-6 font-semibold text-slate-800">${acc.name}</td>
-                        <td class="py-3 px-6 text-xs text-slate-600">${acc.type}</td>
-                        <td class="py-3 px-6 text-xs"><span class="bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-full font-medium">${acc.subCategory}</span></td>
+                        <td class="py-3 px-6 font-mono text-xs font-bold text-[#094074]">${escapeHTML(acc.folio)}</td>
+                        <td class="py-3 px-6 font-semibold text-slate-800">${escapeHTML(acc.name)}</td>
+                        <td class="py-3 px-6 text-xs text-slate-600">${escapeHTML(acc.type)}</td>
+                        <td class="py-3 px-6 text-xs"><span class="bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-full font-medium">${escapeHTML(acc.subCategory)}</span></td>
                         <td class="py-3 px-6 text-right font-mono text-sm ${colorClass}">
                             ${formatSignedTBNumber(netVal)}
                         </td>
@@ -1952,7 +2249,7 @@
                 const displayAmt = negate ? -a.normalBalance : a.normalBalance;
                 return `
                     <div class="flex justify-between py-1 pl-2 hover:bg-slate-50 rounded px-1">
-                        <span class="text-slate-700"><strong class="font-mono text-xs text-[#094074] mr-1.5">${a.folio}</strong>${a.name}</span>
+                        <span class="text-slate-700"><strong class="font-mono text-xs text-[#094074] mr-1.5">${escapeHTML(a.folio)}</strong>${escapeHTML(a.name)}</span>
                         <span class="font-mono font-medium ${negate && a.normalBalance > 0 ? 'text-rose-700' : 'text-slate-800'}">${formatBDT(displayAmt)}</span>
                     </div>
                 `;
@@ -2192,27 +2489,27 @@
             document.getElementById('coa-table-body').innerHTML = filteredAccounts.map(acc => `
                 <tr class="hover:bg-slate-50 transition">
                     <td class="py-3 px-5">
-                        <input type="text" id="coa-code-${acc.id}" value="${acc.folio}" onchange="updateFolioCode('${acc.id}', this.value)" class="font-mono text-xs font-bold text-[#094074] bg-blue-50 border border-blue-200 rounded-lg px-2.5 py-1.5 w-28 focus:outline-none focus:ring-2 focus:ring-[#094074]">
+                        <input type="text" id="coa-code-${escapeHTML(acc.id)}" value="${escapeHTML(acc.folio)}" onchange="updateFolioCode('${escapeHTML(acc.id)}', this.value)" class="font-mono text-xs font-bold text-[#094074] bg-blue-50 border border-blue-200 rounded-lg px-2.5 py-1.5 w-28 focus:outline-none focus:ring-2 focus:ring-[#094074]">
                     </td>
                     <td class="py-3 px-5">
-                        <input type="text" id="coa-name-${acc.id}" value="${acc.name}" onchange="updateAccountName('${acc.id}', this.value)" class="font-medium text-slate-800 bg-white border border-slate-200 hover:border-slate-300 rounded-lg px-2.5 py-1.5 w-full max-w-xs focus:border-[#094074] focus:outline-none">
+                        <input type="text" id="coa-name-${escapeHTML(acc.id)}" value="${escapeHTML(acc.name)}" onchange="updateAccountName('${escapeHTML(acc.id)}', this.value)" class="font-medium text-slate-800 bg-white border border-slate-200 hover:border-slate-300 rounded-lg px-2.5 py-1.5 w-full max-w-xs focus:border-[#094074] focus:outline-none">
                     </td>
                     <td class="py-3 px-5">
-                        <select onchange="updateAccountCategory('${acc.id}', this.value)" class="text-xs font-semibold text-slate-700 bg-slate-100 border border-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none">
+                        <select onchange="updateAccountCategory('${escapeHTML(acc.id)}', this.value)" class="text-xs font-semibold text-slate-700 bg-slate-100 border border-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none">
                             ${types.map(t => `<option value="${t}" ${acc.type === t ? 'selected' : ''}>${t}</option>`).join('')}
                         </select>
                     </td>
                     <td class="py-3 px-5">
-                        <select onchange="updateAccountSubCategory('${acc.id}', this.value)" class="text-xs font-semibold text-[#094074] bg-blue-50/60 border border-blue-200 rounded-lg px-2.5 py-1.5 focus:outline-none">
+                        <select onchange="updateAccountSubCategory('${escapeHTML(acc.id)}', this.value)" class="text-xs font-semibold text-[#094074] bg-blue-50/60 border border-blue-200 rounded-lg px-2.5 py-1.5 focus:outline-none">
                             ${SUBCATEGORY_OPTIONS.map(s => `<option value="${s.value}" ${acc.subCategory === s.value ? 'selected' : ''}>${s.label}</option>`).join('')}
                         </select>
                     </td>
                     <td class="py-3 px-5 text-center whitespace-nowrap">
-                        <button type="button" onclick="focusCOAEdit('${acc.id}')" class="px-2.5 py-1 rounded bg-blue-50 text-[#094074] hover:bg-blue-100 text-xs font-semibold mr-1 transition">
+                        <button type="button" onclick="focusCOAEdit('${escapeHTML(acc.id)}')" class="px-2.5 py-1 rounded bg-blue-50 text-[#094074] hover:bg-blue-100 text-xs font-semibold mr-1 transition">
                             <i class="fa-solid fa-pen"></i> Edit
                         </button>
                         ${isSuper
-                            ? `<button type="button" onclick="requestDeleteAccount('${acc.id}')" class="px-2.5 py-1 rounded bg-rose-50 text-rose-600 hover:bg-rose-100 text-xs font-semibold transition" title="Super Admin Delete">
+                            ? `<button type="button" onclick="requestDeleteAccount('${escapeHTML(acc.id)}')" class="px-2.5 py-1 rounded bg-rose-50 text-rose-600 hover:bg-rose-100 text-xs font-semibold transition" title="Super Admin Delete">
                                 <i class="fa-solid fa-trash"></i> Delete
                                </button>`
                             : `<span class="text-[11px] text-slate-400 italic ml-1" title="Only Super Admin can delete accounts"><i class="fa-solid fa-lock"></i> Super Admin</span>`
@@ -2407,9 +2704,9 @@
                         <p class="text-xs text-slate-500">Tap | Ticket | Travel — Accounting & Financial Voucher</p>
                     </div>
                     <div class="text-right text-xs">
-                        <div class="font-mono font-bold text-slate-800">Voucher: ${tx.ref}</div>
-                        <div class="text-slate-500">Date: ${tx.date}</div>
-                        <div class="text-slate-500">Branch: ${tx.branch || 'Head Office'}</div>
+                        <div class="font-mono font-bold text-slate-800">Voucher: ${escapeHTML(tx.ref)}</div>
+                        <div class="text-slate-500">Date: ${escapeHTML(tx.date)}</div>
+                        <div class="text-slate-500">Branch: ${escapeHTML(tx.branch || 'Head Office')}</div>
                     </div>
                 </div>
                 <table class="w-full text-xs border-collapse my-3">
@@ -2423,24 +2720,24 @@
                     </thead>
                     <tbody class="divide-y divide-slate-200">
                         <tr>
-                            <td class="py-2 px-3 font-mono font-bold">${dr.folio}</td>
-                            <td class="py-2 px-3 font-semibold">${dr.name} (Dr.)</td>
+                            <td class="py-2 px-3 font-mono font-bold">${escapeHTML(dr.folio)}</td>
+                            <td class="py-2 px-3 font-semibold">${escapeHTML(dr.name)} (Dr.)</td>
                             <td class="py-2 px-3 text-right font-bold">${formatBDT(tx.amount)}</td>
                             <td class="py-2 px-3 text-right">-</td>
                         </tr>
                         <tr>
-                            <td class="py-2 px-3 font-mono font-bold">${cr.folio}</td>
-                            <td class="py-2 px-3 pl-6">To ${cr.name} (Cr.)</td>
+                            <td class="py-2 px-3 font-mono font-bold">${escapeHTML(cr.folio)}</td>
+                            <td class="py-2 px-3 pl-6">To ${escapeHTML(cr.name)} (Cr.)</td>
                             <td class="py-2 px-3 text-right">-</td>
                             <td class="py-2 px-3 text-right font-bold">${formatBDT(tx.amount)}</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="text-xs bg-slate-50 p-3 rounded-lg border border-slate-200">
-                    <strong>Narration:</strong> ${tx.desc}
+                    <strong>Narration:</strong> ${escapeHTML(tx.desc)}
                 </div>
                 <div class="grid grid-cols-2 gap-8 pt-8 text-center text-xs text-slate-500">
-                    <div class="border-t border-slate-300 pt-1">Prepared By (${currentUser ? currentUser.name : 'Accountant'})</div>
+                    <div class="border-t border-slate-300 pt-1">Prepared By (${escapeHTML(currentUser ? currentUser.name : 'Accountant')})</div>
                     <div class="border-t border-slate-300 pt-1">Authorized Auditor</div>
                 </div>
             `;
@@ -2498,14 +2795,10 @@
             renderUsersTable();
         }
 
-        window.onload = function () {
-            loadState();
+        window.onload = async function () {
+            await checkCloudStatus();
+            await loadState();
             refreshSearchableDropdowns();
-            if (currentUser) {
-                enterERPScreen();
-            } else {
-                renderAll();
-            }
         };
     </script>
 </body>
