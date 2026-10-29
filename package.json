@@ -1,0 +1,25 @@
+{
+  "name": "tickydo-erp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-netlify.js",
+    "start": "node server.js",
+    "check": "node --check server.js && node --check netlify/functions/api.js && node --check scripts/build-netlify.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^18.0.9",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0",
+    "pg": "^8.16.3",
+    "serverless-http": "^4.0.0"
+  }
+}
