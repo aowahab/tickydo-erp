@@ -33,7 +33,8 @@ Local mode stores data in `data/erp.db` and has no login. Set `APP_PASSWORD` to 
 
 1. Push this project to the GitHub repo connected to the Vercel project.
 2. In Vercel, add a Postgres database (Storage / Marketplace, e.g. Neon) and connect it to the
-   project. This sets `DATABASE_URL` (or `POSTGRES_URL`) automatically. Tables and the chart of
+   project. This sets `DATABASE_URL` / `POSTGRES_URL` automatically (a custom prefix such as `MY_TICKYDO_` is also recognised).
+   `GET /api/health` confirms the database connection. Tables and the chart of
    accounts are created on first request.
 3. In Project Settings > Environment Variables, set:
    - `APP_PASSWORD` - the sign-in password (**required**: without it the deployed app refuses all data requests)
