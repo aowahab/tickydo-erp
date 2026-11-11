@@ -1,13 +1,14 @@
 {
-  "rewrites": [
+  "outputDirectory": "public",
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api/index.js" }],
+  "headers": [
     {
       "source": "/(.*)",
-      "destination": "/api"
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "same-origin" }
+      ]
     }
-  ],
-  "functions": {
-    "api/index.js": {
-      "includeFiles": "Tickydo_ERP_Accounting___Financial_Management.html"
-    }
-  }
+  ]
 }
