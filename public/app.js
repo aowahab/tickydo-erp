@@ -122,7 +122,7 @@ async function api(path, opts = {}) {
     /* non-JSON error page */
   }
   if (res.status === 401) {
-    showLogin('password');
+    showLogin('password', state.session && state.session.usernameRequired);
     throw new Error('Please sign in');
   }
   if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
@@ -813,9 +813,10 @@ async function route() {
   }
 }
 
-function showLogin(mode) {
+function showLogin(mode, needUser) {
   closeDialog();
   const locked = mode === 'locked';
+  const user = needUser ? h('input', { autocomplete: 'username', required: true, 'aria-label': 'Username' }) : null;
   const pw = h('input', { type: 'password', autocomplete: 'current-password', required: true, 'aria-label': 'Password' });
   const err = h('div', { class: 'callout bad', style: 'display:none' });
   const form = h(
@@ -825,7 +826,7 @@ function showLogin(mode) {
         e.preventDefault();
         err.style.display = 'none';
         try {
-          const res = await fetch('/api/login', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pw.value }) });
+          const res = await fetch('/api/login', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: user ? user.value : undefined, password: pw.value }) });
           const data = await res.json().catch(() => ({}));
           if (!res.ok) throw new Error(data.error || 'Sign-in failed');
           state.session = { authenticated: true, mode: 'password' };
@@ -838,13 +839,14 @@ function showLogin(mode) {
       },
     },
     err,
+    user ? h('label', { class: 'field' }, 'Username', user) : null,
     h('label', { class: 'field' }, 'Password', pw),
     h('button', { class: 'primary', type: 'submit' }, 'Sign in')
   );
   $('#app').replaceChildren(
     h('div', { class: 'login' }, h('div', { class: 'card' }, h('div', { class: 'logo' }, 'T'), h('h1', null, 'Tickydo ERP'), h('div', { class: 'muted' }, 'Finance module'), locked ? h('div', { class: 'callout warn', style: 'margin-top:16px' }, 'This server is locked. Set the APP_PASSWORD environment variable and redeploy to enable sign-in.') : form))
   );
-  if (!locked) pw.focus();
+  if (!locked) (user || pw).focus();
 }
 
 let hashBound = false;
@@ -863,7 +865,7 @@ async function start() {
   try {
     const res = await fetch('/api/session', { credentials: 'same-origin' });
     state.session = await res.json();
-    if (!state.session.authenticated) return showLogin(state.session.mode);
+    if (!state.session.authenticated) return showLogin(state.session.mode, state.session.usernameRequired);
     await start();
   } catch (e) {
     $('#app').replaceChildren(h('div', { class: 'callout bad', style: 'margin:24px' }, 'Cannot reach the server: ' + e.message));

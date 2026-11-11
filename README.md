@@ -37,6 +37,7 @@ Local mode stores data in `data/erp.db` and has no login. Set `APP_PASSWORD` to 
    accounts are created on first request.
 3. In Project Settings > Environment Variables, set:
    - `APP_PASSWORD` - the sign-in password (**required**: without it the deployed app refuses all data requests)
+   - `APP_USERNAME` - optional; when set, sign-in asks for this username as well
    - `SESSION_SECRET` - a long random string
    - optional: `COMPANY_NAME` (default `Tickydo`), `FISCAL_YEAR_START_MONTH` (default `7`, i.e. July), `APP_TIMEZONE` (default `Asia/Dhaka`)
 4. Redeploy.
